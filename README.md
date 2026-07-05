@@ -14,6 +14,7 @@ A Claude Code plugin with actionable PM frameworks for taking an AI product from
 |-------|-------------|
 | `jtbd-discovery` | Run discovery interviews that surface real struggles, not feature requests. Separate symptoms from root causes. Compress findings into testable jobs. |
 | `doc-coauthoring` | Write strategy and experiment docs with AI that sound like a human wrote them. 3-stage workflow with built-in quality rules. |
+| `ai-harness-design` | Set up a production-grade Claude Code harness from scratch. Layered architecture, starter rules, hooks, knowledge contexts, anti-patterns, and a phased evolution checklist. |
 
 More skills ship weekly alongside the LinkedIn series.
 
