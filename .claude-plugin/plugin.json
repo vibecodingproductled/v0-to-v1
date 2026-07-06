@@ -1,0 +1,11 @@
+{
+  "name": "v0-to-v1",
+  "description": "PM skills for building AI products from scratch. Discovery interviews, document co-authoring, and production-grade Claude Code harness design.",
+  "version": "1.1.0",
+  "author": {
+    "name": "Daniel Gameiro"
+  },
+  "homepage": "https://github.com/vibecodingproductled/v0-to-v1",
+  "repository": "https://github.com/vibecodingproductled/v0-to-v1",
+  "license": "MIT"
+}

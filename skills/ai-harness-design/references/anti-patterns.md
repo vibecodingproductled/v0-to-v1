@@ -12,6 +12,8 @@ These are the mistakes that erode the value of an AI harness over time. Each one
 
 **Fix**: CLAUDE.md under 100 lines. Methodology goes in skills. Procedures go in reference docs. Preferences go in CLAUDE.local.md. Context goes in knowledge contexts.
 
+**The reference extraction technique**: When your CLAUDE.md is growing past the limit, look for blocks that are stable (rarely change) and informational (not needed every session). Folder structure maps, onboarding protocols, architectural overviews. Move each block to `.claude/reference/filename.md` and replace it with a one-line pointer: "Architecture and onboarding: @.claude/reference/architecture.md". Claude loads the reference on demand when the topic comes up, not on every session. One harness went from 95 lines to 50 by extracting three stable blocks, saving roughly 800 tokens per session.
+
 ## 2. The Skill Graveyard
 
 **What it looks like**: 50+ skill directories, most created months ago, many overlapping, no one remembers what half of them do.

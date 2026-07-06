@@ -85,6 +85,50 @@ touch /tmp/.claude-session-marker
 
 **Why log this**: The log data feeds future improvements. If you see yourself modifying the same files every week, that is a candidate for automation. If a knowledge context is never touched, maybe it is stale. The log turns invisible habits into visible patterns.
 
+## PostToolUse: tracking what Claude uses
+
+PostToolUse hooks fire after a specific tool executes. Configure them with a `matcher` that targets the tool name:
+
+```json
+{
+  "PostToolUse": [
+    {
+      "matcher": "Read",
+      "hooks": [
+        {
+          "type": "command",
+          "command": ".claude/hooks/track-usage.sh",
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}
+```
+
+The matcher `"Read"` means this hook fires every time Claude reads a file. The hook script receives JSON on stdin with the tool's input and output. This lets you build usage tracking: which files does Claude actually read? Which skills does it activate?
+
+### Usage tracking example
+
+```bash
+#!/bin/bash
+# .claude/hooks/track-usage.sh
+# Log when Claude reads a SKILL.md file
+
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('tool_input',{}).get('file_path',''))" 2>/dev/null)
+
+if echo "$FILE_PATH" | grep -q "SKILL.md"; then
+    SKILL_NAME=$(echo "$FILE_PATH" | grep -oP 'skills/\K[^/]+')
+    TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    echo "{\"ts\":\"$TIMESTAMP\",\"skill\":\"$SKILL_NAME\"}" >> .claude/skill-usage.jsonl
+fi
+```
+
+**Why this matters**: Over time, the usage log reveals which skills are actively used and which sit idle. In one harness, this data showed that 267 of 342 skills had never been activated, leading to an archive cleanup that dramatically improved intent matching. Without tracking, dead skills accumulate silently and degrade the quality of skill selection.
+
+**Performance rule**: PostToolUse hooks fire on every invocation of the matched tool. Keep them under 1 second. Use a short `timeout` (5 seconds max) as a safety net.
+
 ## Advanced hook patterns
 
 ### Staleness detection (SessionStart)
@@ -115,6 +159,70 @@ fi
   "timeout": 15
 }
 ```
+
+### Log rotation (SessionStart)
+
+```bash
+#!/bin/bash
+# Rotate session log when it exceeds a threshold
+
+LOG_FILE=".claude/session-log.jsonl"
+ARCHIVE_DIR=".claude/session-log-archive"
+MAX_LINES=2000
+KEEP_LINES=1500
+
+if [ ! -f "$LOG_FILE" ]; then exit 0; fi
+
+LINE_COUNT=$(wc -l < "$LOG_FILE" | tr -d ' ')
+if [ "$LINE_COUNT" -le "$MAX_LINES" ]; then exit 0; fi
+
+mkdir -p "$ARCHIVE_DIR"
+LINES_TO_ARCHIVE=$((LINE_COUNT - KEEP_LINES))
+head -n "$LINES_TO_ARCHIVE" "$LOG_FILE" >> "$ARCHIVE_DIR/$(date +%Y-%m).jsonl"
+tail -n "$KEEP_LINES" "$LOG_FILE" > "${LOG_FILE}.tmp"
+mv "${LOG_FILE}.tmp" "$LOG_FILE"
+echo "Session log rotated: $LINE_COUNT -> $KEEP_LINES lines."
+```
+
+**Why a hook and not a manual step**: Logs grow invisibly. At 17 entries per day, you hit 2000 in 4 months. A hook handles it before you notice. Without rotation, the log consumes context every time a skill reads it for pattern detection.
+
+### Cadence-based reminders (SessionStart)
+
+```bash
+#!/bin/bash
+# Remind about a recurring task on a specific day
+
+DAY_OF_WEEK=$(date +%u)  # 1=Monday
+if [ "$DAY_OF_WEEK" -ne 1 ]; then exit 0; fi
+
+OUTPUT_DIR="output/weekly-updates"
+TODAY=$(date +%Y-%m-%d)
+
+if [ -f "$OUTPUT_DIR/update-$TODAY.md" ]; then exit 0; fi
+
+echo "Weekly update reminder: no update written today. Consider generating one."
+```
+
+**Pattern**: Check the day, check if the task is done, remind if not. Works for any recurring cadence: weekly updates, monthly reviews, quarterly planning. The hook exits silently on non-trigger days, so there is zero noise.
+
+### Periodic audit prompts (SessionStart)
+
+```bash
+#!/bin/bash
+# Prompt for a system review when enough new data has accumulated
+
+USAGE_LOG=".claude/skill-usage.jsonl"
+THRESHOLD=50
+
+if [ ! -f "$USAGE_LOG" ]; then exit 0; fi
+
+ENTRIES=$(wc -l < "$USAGE_LOG" | tr -d ' ')
+if [ "$ENTRIES" -ge "$THRESHOLD" ]; then
+    echo "You have $ENTRIES skill activation records. Consider reviewing which skills are used and which can be archived."
+fi
+```
+
+**Pattern**: Watch a data file for growth past a threshold. When it crosses, prompt for review. This creates a feedback loop: usage tracking (PostToolUse) generates data, the audit prompt (SessionStart) tells you when there is enough data to act on. The harness surfaces its own maintenance needs.
 
 ## Rules for hooks
 

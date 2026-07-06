@@ -106,14 +106,49 @@ The connection should describe what flows between contexts, not just that they a
 
 ## Archiving
 
-Knowledge context CLAUDE.md files grow over time. When the Key Decisions section exceeds ~30 entries (roughly 4-6 months of active work), compress:
+Knowledge context CLAUDE.md files grow over time. Without rotation, a busy context reaches 300+ lines in 3-4 months and consumes significant context window on every session.
 
-1. Create `archive.md` in the same folder
-2. Move entries older than 3 months to the archive, grouped by month
-3. Add a one-line summary to CLAUDE.md: "Archived decisions from [period]. See archive.md for full history."
-4. Keep the 10 most recent entries plus any that are still actively referenced
+### When to archive
 
-This preserves history while keeping the always-loaded context lean.
+Two triggers (either one is enough):
+- **Line count**: The CLAUDE.md exceeds 300 lines
+- **Age**: Evolution Log or Key Decisions entries are older than 90 days
+
+### How to archive
+
+1. Create `archive.md` in the same folder if it does not exist
+2. Move entries older than 90 days to the archive, grouped by month
+3. Add a pointer at the end of the active section: "Older entries: [archive.md](./archive.md)"
+4. Keep: the 10 most recent entries, plus any still referenced in Current Status or Blockers
+
+### Automating it
+
+Encode the trigger as a rule that loads in knowledge context directories:
+
+```markdown
+## Evolution Log Rotation
+When this CLAUDE.md exceeds 300 lines, archive Evolution Log entries older than
+90 days to `archive.md` in the same folder. Keep a pointer at the end of the log.
+```
+
+This way Claude checks the condition on every session in that context and offers to rotate when the threshold is hit. You approve the rotation; Claude handles the move.
+
+### What the archive looks like
+
+```markdown
+# [Context Name] Archive
+
+Archived evolution log entries. Current entries are in CLAUDE.md.
+
+## March 2025
+- **2025-03-28**: [Entry text]
+- **2025-03-15**: [Entry text]
+
+## February 2025
+- **2025-02-20**: [Entry text]
+```
+
+History is preserved. The active CLAUDE.md stays lean. Both files live in the same folder, so the archive is always one click away.
 
 ## The compounding effect
 

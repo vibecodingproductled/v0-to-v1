@@ -81,6 +81,23 @@ Growing a harness from scratch to production. Each phase builds on the previous 
 
 **What you should notice**: You spend less time on setup and more time on substance. New team members onboard faster. The harness feels invisible because it just works.
 
+## Phase 7: Self-Healing (Month 6+)
+
+**Goal**: The system detects its own maintenance needs and prompts you to act.
+
+- [ ] Add a PostToolUse hook that logs skill activations to a usage file (see hooks guide)
+- [ ] Add a SessionStart hook that rotates the session log when it exceeds threshold
+- [ ] Add a SessionStart hook that prompts for a system audit when enough usage data accumulates
+- [ ] Review the usage data: which skills are never activated? Archive or merge them
+- [ ] Review the session log: what patterns emerge? Which tasks should be automated with a new skill or hook?
+- [ ] Archive knowledge context entries older than 90 days (or automate this with a rule)
+
+**What you should notice**: The system tells you what needs attention before you discover it by accident. Skill usage tracking reveals dead skills. Log rotation keeps data files lean. Audit prompts close the feedback loop: data accumulates, you review, you adapt.
+
+**Diagnostic**: If you keep discovering stale skills, broken references, or bloated context files through accident rather than a prompt, your self-healing layer is incomplete.
+
+**The feedback loop**: PostToolUse tracking generates data. SessionStart audit hooks tell you when there is enough data to act on. You review and adapt. The harness evolves intentionally, not by drift.
+
 ## Signals that you are on track
 
 At each phase, look for these signals:
@@ -93,6 +110,7 @@ At each phase, look for these signals:
 | 4 | You stop re-explaining context in ongoing initiatives | You still repeat the same background every session |
 | 5 | Claude rarely makes the same mistake twice | The same corrections keep appearing |
 | 6 | The system feels effortless. You think about your work, not the system | You spend time debugging the harness instead of using it |
+| 7 | The system surfaces its own maintenance needs before you notice | You discover stale skills or bloated files by accident |
 
 ## When to stop adding
 
@@ -101,6 +119,6 @@ The harness is done when it is invisible. If you are spending more time maintain
 Common signs of over-engineering:
 - More than 15 skills (unless your domain genuinely has 15 distinct methodologies)
 - Rules longer than 30 lines each
-- More than 3 hooks
+- Hooks that take more than 3 seconds total to run, or more than 3 hooks doing redundant checks on the same event
 - Knowledge contexts for one-off projects that will never have a second session
 - A CLAUDE.md that exceeds 100 lines despite having rules, skills, and knowledge contexts to offload to
