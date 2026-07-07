@@ -6,7 +6,7 @@ Companion to the [V0 to V1 LinkedIn series](https://www.linkedin.com/in/daniel-g
 
 ## What this is
 
-A Claude Code plugin with actionable PM frameworks for taking an AI product from nothing to something. Each skill is a methodology you can apply directly, not a lecture.
+Actionable PM frameworks for taking an AI product from nothing to something. Each skill is a methodology you can apply directly, not a lecture.
 
 ## Skills
 
@@ -18,11 +18,15 @@ A Claude Code plugin with actionable PM frameworks for taking an AI product from
 
 More skills ship weekly alongside the LinkedIn series.
 
-## Install
+## Use
+
+Clone the repo and point Claude Code at any skill:
 
 ```bash
-claude plugin add vibecodingproductled/v0-to-v1
+git clone https://github.com/vibecodingproductled/v0-to-v1.git
 ```
+
+Then reference a skill directly: `/jtbd-discovery`, `/doc-coauthoring`, or `/ai-harness-design`.
 
 ## Principles
 
