@@ -1,6 +1,6 @@
 ---
 name: ai-harness-design
-description: Set up a production-grade Claude Code harness from scratch. Use when starting a new project, auditing an existing setup, helping someone new to Claude Code, or when Claude's output feels inconsistent. Covers the full architecture from CLAUDE.md through rules, skills, hooks, knowledge contexts, and memory.
+description: Set up a production-grade Claude Code harness from scratch. Use when starting a new project, auditing an existing setup, helping someone new to Claude Code, or when Claude's output feels inconsistent. Covers the full architecture: CLAUDE.md, rules, skills, hooks, knowledge contexts, memory, sub-agents, personas, tool (MCP) integration, and the single-source-of-truth principle that keeps it from rotting.
 ---
 
 # AI Harness Design
@@ -8,6 +8,10 @@ description: Set up a production-grade Claude Code harness from scratch. Use whe
 Your prompts are inputs to a system. The system's architecture determines the floor quality of every interaction. A well-structured harness means Claude is consistent, remembers what matters, applies the right frameworks, and fails predictably rather than randomly.
 
 This skill teaches the architecture. Not tips. Not prompt tricks. The structural decisions that make every prompt better.
+
+Think of it like a construction site. The model is the worker: strong, fast, and improving every year. The harness is the execution plan, the quality checklists, the standard procedures, and the inspection protocols around that worker. The worker changes; the plan is what makes the site run the same way every day. Any advantage built on the model's current capability is built on a depreciating asset. The harness is what stays.
+
+This skill is distilled from a real, working harness (its author calls it "Shannon") that has been run daily and iterated for months. It did not start clean. It started bloated: too much in the always-loaded files, too many skills, overlapping rules. The lessons here, especially "start small, prune what you do not use, and let the system tell you what needs fixing," are the corrections that came out of that. You are getting the leaner version that survived the iteration, not a theory.
 
 ## The core insight
 
@@ -28,7 +32,11 @@ This is the foundational pattern. Every layer loads at a different time for a re
 | **Skills** (`.claude/skills/`) | Reusable methodologies | When intent matches description | 10-15 curated, not 100+ dumped |
 | **Reference docs** (`.claude/reference/`) | Detailed protocols | On-demand (too large for always-on) | For multi-step procedures only |
 | **Hooks** (`.claude/hooks/`) | Deterministic automation | On specific events | Shell scripts, not prompts |
+| **Sub-agents** (`.claude/agents/`) | Specialists with isolated context + memory | When you delegate a job to one | One narrow job each. See `references/subagents-guide.md` |
+| **Personas** (inside a context's `personas/`) | Evidence-grounded profiles of specific people | When you work with or about that person | Grounded in real evidence, versioned. See `references/personas-guide.md` |
 | **Memory** | Cross-session corrections | When relevant | Corrections and learned preferences |
+
+This table answers *when* each layer loads. There is a second, orthogonal question every layer is subject to: *who owns each fact*. That is the single-source-of-truth rule, below. Getting the layering right and the ownership wrong still rots the harness.
 
 ### Why layering matters
 
@@ -37,6 +45,26 @@ Everything in CLAUDE.md, rules, and CLAUDE.local.md loads every single session. 
 Skills, knowledge contexts, and reference docs load conditionally. A skill with 500 words only loads when the task matches its description. A knowledge context only loads when you work in its directory. This means you can have rich, detailed methodology available without paying the context cost on every session.
 
 The rule: if it should always be true, it goes in rules. If it is methodology that applies sometimes, it goes in a skill. If it is large and only needed occasionally, it goes in a reference doc.
+
+## One home per fact (single source of truth)
+
+This is the most important rule in a long-lived harness, and the one people learn last, the hard way.
+
+**Each fact has exactly one home. Every other place that needs it stores a pointer, not a copy.**
+
+Here is the failure it prevents. You put your project status, key dates, and stakeholder list in your always-loaded personal config because it is convenient. You also keep a knowledge context for the project that gets updated every session. The context moves; the personal config does not. Three months later they disagree, Claude reads both, and it now has two conflicting "truths" it picks between unpredictably. You debug bad output before realizing a stale copy you forgot about is the cause. Duplication is a slow leak, and it is the most common way a mature harness rots.
+
+The fix is mechanical. When two files would state the same fact, one states it and the other links to it:
+
+- Bad: the launch date in both `CLAUDE.local.md` and `contexts/launch/CLAUDE.md`.
+- Good: the date lives in the context; `CLAUDE.local.md` says "current project: launch, see contexts/launch/CLAUDE.md."
+
+Three sub-rules make it stick:
+1. **Assign every fact an owner.** Personal config owns who-you-are and pointers. A knowledge context owns that initiative's facts. A persona owns how-to-work-with-a-person. An external tool owns its published docs.
+2. **Set a tie-break in advance.** When two files disagree, decide the winner now: usually "the context an agent keeps current beats the file I maintain by hand." Write it down.
+3. **De-duplicate by pointing, never by deleting.** Replace the copy with a pointer; keep the original and its history in its one home.
+
+Full treatment, including a layer-ownership table and how the health-check enforces it: `references/single-source-of-truth.md`.
 
 ## How to decide what goes where
 
@@ -49,6 +77,8 @@ The rule: if it should always be true, it goes in rules. If it is methodology th
 | Only load when specifically needed (and is large) | Reference doc | A 500-line procedure with templates |
 | Happen automatically without the LLM deciding | A hook | Checking if setup files exist on session start |
 | Survive into future sessions as learned preference | Memory | "This user prefers bullet points over paragraphs" |
+| Be a narrow recurring job that needs its own context and memory | A sub-agent | An agent that keeps your knowledge contexts current |
+| Be how to work with a specific recurring person | A persona | An eng lead's territory, red lines, and channel habits |
 | Be the core identity and quick reference | CLAUDE.md | Project name, folder structure, 5 key behaviors |
 
 The most common mistake is putting everything in CLAUDE.md. Resist this. CLAUDE.md is your elevator pitch to Claude, not your operations manual.
@@ -86,11 +116,19 @@ Add hooks in `.claude/settings.json`. See `references/hooks-guide.md` for patter
 
 Create your first knowledge context. See `references/knowledge-contexts-guide.md`. This is a folder with a CLAUDE.md that accumulates decisions, status, and connections over time. The key insight: knowledge contexts are not documentation. They are living memory that makes every future session in that context smarter.
 
-### Phase 5: Refinement (Month 2+)
+If a specific person keeps shaping your work (an eng lead, an approver), add your first persona inside that context's `personas/` folder. See `references/personas-guide.md`.
+
+### Phase 5: Delegation and tools (Month 2)
+
+- Add your first **sub-agent** when a recurring, context-heavy job emerges (usually keeping your contexts current). Use the template in `references/subagents-guide.md`.
+- Wire the **tools you already live in** (docs, chat, analytics) if you use MCP. See `references/mcp-integration.md`. Least-privilege, and never copy tool data into local files (point to it).
+- Install the shipped **`system-health-check`** skill and run it. It catches structural problems and, most importantly, single-source-of-truth drift.
+
+### Phase 6: Self-evolution (Month 3+)
 
 Review what you keep correcting Claude on. Each correction is a candidate for a rule or a memory entry. If you find yourself saying "no, not like that" more than twice for the same thing, encode it.
 
-Run a periodic health check. See `references/evolution-checklist.md` for the full progression from starter to advanced.
+Let the system tell you what to change instead of guessing. With the tracking hooks running (see `references/hooks-guide.md`), the **`system-evolution`** skill reads your usage and session logs and proposes concrete changes: dead skills to archive, missing skills to create, corrections to encode. See `references/evolution-checklist.md` for the full progression and the signals to watch at each phase.
 
 ## CLAUDE.md: what belongs and what does not
 
@@ -141,16 +179,45 @@ A knowledge context is a folder with a CLAUDE.md that accumulates over time. Eve
 
 See `references/knowledge-contexts-guide.md` for the full pattern, including cross-context connections and archiving.
 
+## Sub-agents: specialists with their own context and memory
+
+A sub-agent is a second Claude you delegate a narrow job to. It runs in an isolated context (its work does not clutter your main conversation) and can carry persistent memory across sessions. This is the layer most starter harnesses skip, and the one that makes a setup feel like an operating system rather than a notebook.
+
+Build one when a job is recurring, context-heavy, and gets better if it remembers how it did it last time (for example, an agent that keeps your knowledge contexts current). Do not build one when a skill will do: a skill is methodology the main thread applies inline; an agent is a separate worker with its own window and memory. If the job needs neither isolation nor memory, it is a skill.
+
+See `references/subagents-guide.md` for the full pattern and a ready-to-use agent template.
+
+## Personas: model the humans
+
+Your output is shaped by specific people who have to align, approve, or be persuaded. A persona is a durable, evidence-grounded profile of one person: how they actually communicate, and how they will actually critique your work. Built from real evidence (their messages, docs, decisions), not invented traits.
+
+The high-leverage use is pre-mortem: have Claude read the persona and interrogate your draft as that person, so you find the hole the day before the meeting instead of in it. Personas live inside the knowledge context that owns the relationship, and the single-source-of-truth rule applies: the persona is the one home for "how to work with this person," and skills point to it.
+
+See `references/personas-guide.md` for the full pattern and a persona template.
+
+## Connecting to your real tools
+
+A harness wired to your actual docs, chat, and analytics (via MCP servers) is where the work happens. The architecture rule carries over: each tool is a system of record that owns a class of fact, and the harness points at it rather than copying from it. A knowledge context links to the canonical doc by ID; it does not paste it. Wire the tools you already live in, least-privilege, and never send private context to an external service.
+
+See `references/mcp-integration.md`.
+
+## See it assembled
+
+Templates show the parts. `references/worked-example.md` shows a complete, small harness for a fictional PM: a thin CLAUDE.md, a personal config that points instead of copies, one rule, one skill that reads facts and personas rather than embedding them, one living context, one grounded persona, one bookkeeping sub-agent, and two reflex hooks, with a full session traced through it. Read it once to see how the layers connect.
+
 ## Common anti-patterns
 
-See `references/anti-patterns.md` for the full list. The top 3:
+See `references/anti-patterns.md` for the full list. The top 4:
 
 1. **The monolith CLAUDE.md**: Everything in one file. Loads every session. Wastes context on things that only matter sometimes.
 2. **The skill graveyard**: 50+ skills, most stale, no catalog. Intent matching becomes unreliable. Curate ruthlessly.
 3. **The rule echo**: Same rule defined in CLAUDE.md, in a rule file, and in a skill. They drift apart over time. Define each rule once, in the narrowest scope that covers it.
+4. **The duplicated fact**: The same fact (a date, a roster, a status) copied into two files that then drift. One home per fact; everywhere else points. This is the most common way a mature harness rots.
 
 ## Evolution
 
-Your harness should evolve with your workflow. See `references/evolution-checklist.md` for the full progression from a bare CLAUDE.md to a production system with hooks, knowledge contexts, and self-healing diagnostics.
+Your harness should evolve with your workflow. See `references/evolution-checklist.md` for the full progression from a bare CLAUDE.md to a production system with hooks, knowledge contexts, sub-agents, and self-healing diagnostics.
 
-The principle: start small, add only what you need, encode corrections as durable rules, and periodically prune what you no longer use.
+Two shipped skills do the maintenance for you, so self-healing is real, not aspirational: **`system-health-check`** audits structure and single-source-of-truth drift, and **`system-evolution`** reads your usage logs and proposes what to add, merge, or archive. Run health-check when something feels off; run evolution monthly.
+
+The principle: start small, add only what you need, encode corrections as durable rules, and periodically prune what you no longer use. The harness is done when it is invisible.

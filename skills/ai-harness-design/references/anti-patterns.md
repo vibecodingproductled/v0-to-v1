@@ -74,7 +74,17 @@ These are the mistakes that erode the value of an AI harness over time. Each one
 
 **Fix**: Add a session log (Stop hook) so you have a record of what Claude touches. Periodically run a structural check: do the expected directories exist? Do they contain files? Are there skills that have not been activated in 30 days?
 
-## 8. The Copy-Paste Setup
+## 8. The Duplicated Fact
+
+**What it looks like**: The launch date, the team roster, or the project status written in your always-loaded personal config *and* in the initiative's knowledge context. Two copies of the same fact.
+
+**Why it is tempting**: The personal config is always in context, so putting the fact there feels like it guarantees Claude always knows it. Keeping it in the context too feels thorough.
+
+**Why it fails**: The two copies drift. The context gets updated every session; the personal config gets updated when you remember. Weeks later they disagree, Claude sees two conflicting truths, and picks unpredictably. You debug bad output without realizing a stale copy is the cause. This is the single most common way a mature harness rots.
+
+**Fix**: One home per fact. The fact lives in exactly one place (usually the knowledge context); everywhere else stores a pointer, not a copy. Set a tie-break rule in advance ("if this file and a context disagree, the context wins"). De-duplicate by replacing the copy with a pointer, never by deleting history. See `single-source-of-truth.md`, and let `system-health-check` catch drift for you.
+
+## 9. The Copy-Paste Setup
 
 **What it looks like**: Someone else's CLAUDE.md copied verbatim, with their role, their rules, their anti-patterns.
 
