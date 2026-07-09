@@ -6,7 +6,7 @@ Copy this file to your project directory on first use. The discovery-interview s
 
 | # | Date | Participant role | Opening | Questions | Follow-up | Listening | Leading | Tangents | Hypotheses | Quantify | Closing | Grounding | Bias | Avg | Trend | Top suggestion |
 |---|------|-----------------|---------|-----------|-----------|-----------|---------|----------|------------|----------|---------|-----------|------|-----|-------|----------------|
-| 1 | | | | | | | | | | | | | | | — | |
+| 1 | | | | | | | | | | | | | | | - | |
 
 ## Dimension Key
 

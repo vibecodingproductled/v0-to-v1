@@ -6,7 +6,7 @@ description: |
   interview technique with persistent tracking.
   Use when: "/discovery-interview", "process interview", "write up interview", "interview writeup",
   "score my interview", "interview feedback".
-  Complements jtbd-discovery (problem framing) — this skill handles the interview lifecycle itself.
+  Complements jtbd-discovery (problem framing): this skill handles the interview lifecycle itself.
 ---
 
 # Discovery Interview
@@ -271,7 +271,7 @@ This protocol is the core of the skill. It runs before, during, and after every 
 
 ## References
 
-- [references/writeup-template.md](references/writeup-template.md) — Structured writeup template
-- [references/framework-update-template.md](references/framework-update-template.md) — Problem framework template for evidence propagation
-- [references/feedback-tracker-template.md](references/feedback-tracker-template.md) — Persistent interviewer scorecard tracker
-- `jtbd-discovery` skill (in this repo) — Trunk-branch problem framing and synthesis methodology
+- [references/writeup-template.md](references/writeup-template.md): Structured writeup template
+- [references/framework-update-template.md](references/framework-update-template.md): Problem framework template for evidence propagation
+- [references/feedback-tracker-template.md](references/feedback-tracker-template.md): Persistent interviewer scorecard tracker
+- `jtbd-discovery` skill (in this repo): Trunk-branch problem framing and synthesis methodology

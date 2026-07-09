@@ -20,6 +20,8 @@ Actionable PM frameworks for taking an AI product from nothing to something. Eac
 
 More skills ship weekly alongside the LinkedIn series.
 
+`system-evolution` (and part of `system-health-check`) read usage and session logs. Those logs come from the tracking hooks in `skills/ai-harness-design/references/hooks-guide.md`. Set those hooks up first and let data accumulate for a couple of weeks; without them, the evolution review has nothing to read.
+
 ## Use
 
 Clone the repo and point Claude Code at any skill:

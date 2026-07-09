@@ -37,7 +37,7 @@
 
 ## Session Notes
 
-### Phase 1: [Name from config — e.g., "Open Discovery"]
+### Phase 1: [Name from config, e.g. "Open Discovery"]
 
 _Unprompted / Prompted: [mark which]_
 
@@ -88,15 +88,15 @@ Weight: HIGH (unprompted + confirmed), MEDIUM (one or the other), LOW (only when
 
 ### Confirmed (prompted)
 
-- [What confirmed only after you showed material or asked directly — weaker signal]
+- [What confirmed only after you showed material or asked directly, weaker signal]
 
 ### Challenged
 
-- [What contradicted your hypotheses — this section is as important as the confirmations]
+- [What contradicted your hypotheses. This section is as important as the confirmations]
 
 ### New signals
 
-- [Anything that does not fit your existing framework — potential new problem or root cause]
+- [Anything that does not fit your existing framework: potential new problem or root cause]
 
 ## Pre-Interview Assumptions (scored)
 
