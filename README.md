@@ -2,7 +2,7 @@
 
 PM skills for building AI products from scratch.
 
-Companion to the [V0 to V1 LinkedIn series](https://www.linkedin.com/in/daniel-gameiro/) by Daniel Gameiro.
+Companion to the [V0 to V1 LinkedIn series](https://www.linkedin.com/in/danielsilvagameiro/) by Daniel Gameiro.
 
 ## What this is
 
