@@ -71,21 +71,43 @@ fi
 ```bash
 #!/bin/bash
 # .claude/hooks/log-session.sh
+# Only logs when something meaningful changed. Skips empty rows.
 
+PROJECT_DIR="${CLAUDE_PROJECT_DIR:-.}"
+LOG_FILE="$PROJECT_DIR/.claude/session-log.jsonl"
+
+BRAINS=""
+if [ -d "$PROJECT_DIR/contexts" ]; then
+  BRAINS=$(find "$PROJECT_DIR/contexts" -name "*.md" -newer "$LOG_FILE" 2>/dev/null | head -10)
+fi
+
+OUTPUTS=""
+if [ -d "$PROJECT_DIR/output" ]; then
+  OUTPUTS=$(find "$PROJECT_DIR/output" -type f -newer "$LOG_FILE" 2>/dev/null | head -10)
+fi
+
+BRAINS_N=$(printf '%s' "$BRAINS" | grep -c . || true)
+OUTPUT_N=$(printf '%s' "$OUTPUTS" | grep -c . || true)
+
+# Nothing changed: do not append an empty row
+if [ "$BRAINS_N" -eq 0 ] && [ "$OUTPUT_N" -eq 0 ]; then
+  exit 0
+fi
+
+BRAINS_CSV=$(printf '%s' "$BRAINS" | tr '\n' ',' | sed 's/,$//')
+OUTPUT_CSV=$(printf '%s' "$OUTPUTS" | tr '\n' ',' | sed 's/,$//')
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-BRAIN_FILES=$(find . -path "*/CLAUDE.md" -newer /tmp/.claude-session-marker 2>/dev/null | tr '\n' ',' | sed 's/,$//')
-OUTPUT_FILES=$(find output/ -newer /tmp/.claude-session-marker 2>/dev/null | tr '\n' ',' | sed 's/,$//')
 
-echo "{\"ts\":\"$TIMESTAMP\",\"brains\":\"$BRAIN_FILES\",\"outputs\":\"$OUTPUT_FILES\"}" >> .claude/session-log.jsonl
-
-touch /tmp/.claude-session-marker
+echo "{\"ts\":\"$TIMESTAMP\",\"brains\":\"$BRAINS_CSV\",\"outputs\":\"$OUTPUT_CSV\"}" >> "$LOG_FILE"
 ```
 
-**What it does**: Appends a JSON line recording which knowledge contexts and output files were modified. Over time, this log reveals patterns: which contexts get the most attention, what types of output you produce most, where your time goes.
+**What it does**: Appends a JSON line recording which knowledge contexts and output files were modified, but only when something actually changed. Over time, this log reveals patterns: which contexts get the most attention, what types of output you produce most, where your time goes.
 
-**Why log this**: The log data feeds future improvements. If you see yourself modifying the same files every week, that is a candidate for automation. If a knowledge context is never touched, maybe it is stale. The log turns invisible habits into visible patterns.
+**Why skip empty rows**: An earlier version logged on every Stop, including turns where nothing changed. After four months that log had 1,800 rows, 80% of them empty. The empty rows added noise to every evolution review and bloated the file. Logging only meaningful activity keeps the data clean and the file small.
 
-## PostToolUse: tracking what Claude uses
+**Why `-newer "$LOG_FILE"`**: The comparison anchor is the log file itself. Every time a row is appended, the file's modification time updates, so the next Stop only sees files changed since the last log entry. This survives reboots (unlike a `/tmp` marker file) and requires no external state.
+
+## PostToolUse: tracking skill activations
 
 PostToolUse hooks fire after a specific tool executes. Configure them with a `matcher` that targets the tool name:
 
@@ -93,11 +115,11 @@ PostToolUse hooks fire after a specific tool executes. Configure them with a `ma
 {
   "PostToolUse": [
     {
-      "matcher": "Read",
+      "matcher": "Skill",
       "hooks": [
         {
           "type": "command",
-          "command": ".claude/hooks/track-usage.sh",
+          "command": ".claude/hooks/track-skill-usage.sh",
           "timeout": 5
         }
       ]
@@ -106,23 +128,37 @@ PostToolUse hooks fire after a specific tool executes. Configure them with a `ma
 }
 ```
 
-The matcher `"Read"` means this hook fires every time Claude reads a file. The hook script receives JSON on stdin with the tool's input and output. This lets you build usage tracking: which files does Claude actually read? Which skills does it activate?
+The matcher `"Skill"` means this hook fires every time Claude invokes a skill through the Skill tool. The hook script receives JSON on stdin with the tool's input and output. This measures real activations: a human asked for a skill, and Claude used it.
+
+### Why "Skill", not "Read"
+
+An earlier version used `matcher: "Read"` and checked whether the file path contained `SKILL.md`. This seemed reasonable but created a self-poisoning loop. Many harnesses have a quality gate that forces Claude to read matching SKILL.md files on every turn. Health-check sweeps read dozens of SKILL.md files. All of those reads landed in the usage log, making those skills appear "highly active." The evolution review then trusted the inflated data and kept skills it should have archived.
+
+Tracking the Skill tool activation instead of file reads breaks the contamination cycle. A skill read is preparation; a skill invocation is the action that matters.
 
 ### Usage tracking example
 
 ```bash
 #!/bin/bash
-# .claude/hooks/track-usage.sh
-# Log when Claude reads a SKILL.md file
+# .claude/hooks/track-skill-usage.sh
+# Log when a skill is invoked via the Skill tool
 
 INPUT=$(cat)
-FILE_PATH=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('tool_input',{}).get('file_path',''))" 2>/dev/null)
+SKILL_NAME=$(echo "$INPUT" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+print(data.get('tool_input', {}).get('skill', ''))
+" 2>/dev/null)
 
-if echo "$FILE_PATH" | grep -q "SKILL.md"; then
-    SKILL_NAME=$(echo "$FILE_PATH" | grep -oP 'skills/\K[^/]+')
-    TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-    echo "{\"ts\":\"$TIMESTAMP\",\"skill\":\"$SKILL_NAME\"}" >> .claude/skill-usage.jsonl
-fi
+if [ -z "$SKILL_NAME" ]; then exit 0; fi
+
+# Skip archived skills
+case "$SKILL_NAME" in
+  skills-archive/*) exit 0 ;;
+esac
+
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+echo "{\"ts\":\"$TIMESTAMP\",\"skill\":\"$SKILL_NAME\"}" >> .claude/skill-usage.jsonl
 ```
 
 **Why this matters**: Over time, the usage log reveals which skills are actively used and which sit idle. In one harness, this data showed that 267 of 342 skills had never been activated, leading to an archive cleanup that dramatically improved intent matching. Without tracking, dead skills accumulate silently and degrade the quality of skill selection.
@@ -209,20 +245,73 @@ echo "Weekly update reminder: no update written today. Consider generating one."
 
 ```bash
 #!/bin/bash
-# Prompt for a system review when enough new data has accumulated
+# Prompt for a system review when enough NEW data has accumulated
+# Uses a state file to track what was already reviewed
 
 USAGE_LOG=".claude/skill-usage.jsonl"
-THRESHOLD=50
+STATE_FILE=".claude/.last-evolution"
+THRESHOLD=30
 
 if [ ! -f "$USAGE_LOG" ]; then exit 0; fi
 
-ENTRIES=$(wc -l < "$USAGE_LOG" | tr -d ' ')
-if [ "$ENTRIES" -ge "$THRESHOLD" ]; then
-    echo "You have $ENTRIES skill activation records. Consider reviewing which skills are used and which can be archived."
+CURRENT=$(wc -l < "$USAGE_LOG" | tr -d ' ')
+
+LAST_REVIEWED=0
+if [ -f "$STATE_FILE" ]; then
+    LAST_REVIEWED=$(cat "$STATE_FILE" | tr -d ' ')
+fi
+
+NEW_ENTRIES=$((CURRENT - LAST_REVIEWED))
+if [ "$NEW_ENTRIES" -ge "$THRESHOLD" ]; then
+    echo "$NEW_ENTRIES new skill activations since last review. Consider running /system-evolution."
 fi
 ```
 
-**Pattern**: Watch a data file for growth past a threshold. When it crosses, prompt for review. This creates a feedback loop: usage tracking (PostToolUse) generates data, the audit prompt (SessionStart) tells you when there is enough data to act on. The harness surfaces its own maintenance needs.
+**Pattern**: Watch a data file for growth past a threshold *since the last review*, not total size. The state file (`.claude/.last-evolution`) records the line count at the time of the last evolution review. The hook compares against the current count and only prompts when enough new data has accumulated.
+
+Without the state file, an earlier version prompted on every session once the log crossed 50 entries total. That meant the nag fired forever after the threshold was passed but before a review happened. With the state file, the nag resets after each review.
+
+This creates a feedback loop: usage tracking (PostToolUse) generates data, the audit prompt (SessionStart) tells you when there is enough *new* data to act on, you review and the state file resets. The harness surfaces its own maintenance needs at the right cadence.
+
+## Pre-commit hooks: git as enforcement
+
+Claude Code hooks run inside conversations. Pre-commit hooks run in git, outside conversations. They catch structural drift at commit time, before bad state reaches the repo.
+
+A pre-commit hook is a script at `.git/hooks/pre-commit`. Keep a tracked copy at `.claude/hooks/pre-commit` and symlink it so the hook survives clones:
+
+```bash
+# One-time setup (run once after cloning)
+ln -sf ../../.claude/hooks/pre-commit .git/hooks/pre-commit
+```
+
+### Validation pre-commit hook
+
+```bash
+#!/bin/bash
+# .claude/hooks/pre-commit
+# Runs the integrity validator and warns on structural drift
+# NEVER blocks a commit. Warns only.
+
+VALIDATOR=".claude/hooks/validate-integrity.sh"
+if [ ! -x "$VALIDATOR" ]; then exit 0; fi
+
+OUTPUT=$("$VALIDATOR" --quiet 2>&1)
+ERRORS=$(echo "$OUTPUT" | grep -c "^ERROR" || true)
+
+if [ "$ERRORS" -gt 0 ]; then
+    echo ""
+    echo "=== Integrity warnings (not blocking) ==="
+    echo "$OUTPUT" | grep "^ERROR"
+    echo "=== Run /system-health-check for details ==="
+    echo ""
+fi
+
+exit 0
+```
+
+**Why warn, not block**: You are the operator. A blocking pre-commit hook stops work when a reference breaks mid-refactor, which is exactly when you are in the middle of fixing things. The warning surfaces the problem; you decide when to address it.
+
+**What to validate**: At minimum, check that every skill/agent name referenced in your harness files resolves to an existing directory or file. A bash script with `grep` and `find` is enough. See `system-health-check` for the full check list. The pre-commit hook runs the same validator with a `--quiet` flag that suppresses passing checks.
 
 ## Rules for hooks
 

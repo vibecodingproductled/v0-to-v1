@@ -86,6 +86,15 @@ where things go and you never lose history.
   corrections), not for initiative facts (those go in the context file).
 ```
 
+## When to archive an agent
+
+Agents accumulate the same way skills do. Review periodically and archive agents that:
+- **Overlap with a skill**: if the job does not need isolation or memory, it should be a skill, not an agent. A "meeting summarizer" agent whose only advantage over a `/meeting` skill is that it exists is overhead, not value.
+- **Have not been dispatched in 30+ days**: if you are not using it, it is not earning its context cost.
+- **Were absorbed by another agent**: when two agents' jobs converge, merge into the better one and archive the other.
+
+Archive to `.claude/agents-archive/` with a short README explaining why each agent was moved. Keep 3-5 focused agents. A fleet of 8+ usually means several are redundant, and the indirection of choosing between them costs more than the specialization saves.
+
 ## Why isolation matters
 
 When the main thread delegates the "read 12 files and update the context" job to a sub-agent, those 12 files never enter your main conversation. You get back a two-line summary of what changed. The main thread stays focused on your actual work while the specialist handles the bookkeeping in its own window. That separation is the whole point.

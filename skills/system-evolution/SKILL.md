@@ -13,8 +13,8 @@ A harness should adapt to your real workflow, not the one you imagined when you 
 
 ## Inputs
 
-- `.claude/skill-usage.jsonl` (from the PostToolUse tracker in the hooks guide): which skills activate, how often.
-- `.claude/session-log.jsonl` (from the Stop hook): which contexts and outputs you touch, and when.
+- `.claude/skill-usage.jsonl` (from the PostToolUse tracker in the hooks guide): which skills are *activated* (invoked via the Skill tool), how often. Note: if the log was built with an older `Read`-based tracker (matching on SKILL.md file reads rather than Skill tool invocations), the data is contaminated by health-check sweeps and quality-gate forced reads. Recommend starting a fresh log after switching to the Skill-based tracker.
+- `.claude/session-log.jsonl` (from the Stop hook): which contexts and outputs you touch, and when. Only meaningful sessions are logged (empty rows are skipped).
 - The harness itself: current skills, rules, hooks, contexts.
 
 If a log is missing or thin, say so. Do not fabricate patterns from insufficient data. Recommend enabling the tracking hooks first (see `../ai-harness-design/references/hooks-guide.md`) and coming back once data has accumulated.
@@ -61,3 +61,7 @@ Read N skill-usage records and M session-log entries over [dates].
 - Archive, do not delete. Losing skills should be reversible.
 - Apply changes only with approval, one at a time.
 - Bias toward removal. A harness is done when it is invisible. If the review only ever adds, the system will bloat. Ask what can be pruned every time.
+
+## Record the run
+
+After completing the evolution review, write the current `skill-usage.jsonl` line count to `.claude/.last-evolution`. This tells the SessionStart audit hook not to re-prompt until meaningful new data accumulates. Without this, the audit hook fires every session once the log crosses its threshold, which defeats the purpose of the threshold.

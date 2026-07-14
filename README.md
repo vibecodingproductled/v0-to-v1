@@ -10,12 +10,25 @@ Actionable PM frameworks for taking an AI product from nothing to something. Eac
 
 ## Skills
 
+### Discovery
+
 | Skill | What it does |
 |-------|-------------|
 | `jtbd-discovery` | Run discovery interviews that surface real struggles, not feature requests. Separate symptoms from root causes. Compress findings into testable jobs. |
+| `discovery-interview` | Conduct structured user research interviews with hypothesis tracking, destroy questions, and automated writeups. |
+
+### Writing
+
+| Skill | What it does |
+|-------|-------------|
 | `doc-coauthoring` | Write strategy and experiment docs with AI that sound like a human wrote them. 3-stage workflow with built-in quality rules. |
+
+### System
+
+| Skill | What it does |
+|-------|-------------|
 | `ai-harness-design` | Set up a production-grade Claude Code harness from scratch. Layered architecture, the single-source-of-truth rule, starter rules, hooks, knowledge contexts, sub-agents, personas, tool integration, a fully worked example, and a phased evolution checklist. |
-| `system-health-check` | Diagnose an existing harness: structure, bloat, stale skills, broken references, and single-source-of-truth drift. Reports issues; fixes only with your approval. |
+| `system-health-check` | Diagnose an existing harness: structure, bloat, stale skills, broken references, and single-source-of-truth drift. Now with a deterministic validation step. Reports issues; fixes only with your approval. |
 | `system-evolution` | Evolve a harness from how it is actually used. Reads usage and session logs to propose what to add, merge, or archive. Grounded in data, not guesses. |
 
 More skills ship weekly alongside the LinkedIn series.
@@ -30,7 +43,7 @@ Clone the repo and point Claude Code at any skill:
 git clone https://github.com/vibecodingproductled/v0-to-v1.git
 ```
 
-Then reference a skill directly: `/jtbd-discovery`, `/doc-coauthoring`, `/ai-harness-design`, `/system-health-check`, or `/system-evolution`.
+Then reference a skill directly: `/jtbd-discovery`, `/discovery-interview`, `/doc-coauthoring`, `/ai-harness-design`, `/system-health-check`, or `/system-evolution`.
 
 ## Principles
 

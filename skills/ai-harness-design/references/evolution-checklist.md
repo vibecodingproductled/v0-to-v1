@@ -98,6 +98,26 @@ Growing a harness from scratch to production. Each phase builds on the previous 
 
 **The feedback loop**: PostToolUse tracking generates data. SessionStart audit hooks tell you when there is enough data to act on. You review and adapt. The harness evolves intentionally, not by drift.
 
+## Phase 8: Deterministic Enforcement (Month 9+)
+
+**Goal**: Structural invariants are checked by a script, not by the LLM.
+
+The self-healing layer (Phase 7) runs through the LLM: it reads logs and narrates what is wrong. That works for qualitative problems (a skill description is vague, a context is stale). It fails for structural invariants: does every referenced skill exist? Does every folder match its frontmatter name? Does every cross-context connection target a real directory? The LLM checks these sometimes, inconsistently. A script checks them always, the same way.
+
+- [ ] Build a validation script (bash + grep + find, no LLM, under 100 lines) that checks:
+  - Every skill/agent name referenced in harness files resolves to an existing path
+  - Folder names match frontmatter `name:` fields
+  - Cross-context connection targets exist
+  - No skill appears in two locations with divergent content
+- [ ] Wire it into `system-health-check` as the mandatory first step: run the script, report its output, then proceed with LLM-based checks
+- [ ] Wire it as a git pre-commit hook (warns, never blocks; see the hooks guide for the pattern)
+- [ ] Add a durable queue for cross-context propagation intent: a JSONL file where the Stop hook appends propagation needs, and the SessionStart hook surfaces pending items
+- [ ] Review the durable queue after a month of use: are items being acted on, or accumulating indefinitely?
+
+**What you should notice**: Broken references, phantom names, and naming drift are caught by the script before you discover them by accident. The health-check goes from "Claude narrates what looks wrong" to "the script reports what is wrong, then Claude interprets the results." Pre-commit warnings catch drift at the moment you introduce it.
+
+**Diagnostic**: If you discover a broken reference manually that the validator did not catch, the script has a gap. Add the check and re-run.
+
 ## Signals that you are on track
 
 At each phase, look for these signals:
@@ -111,6 +131,7 @@ At each phase, look for these signals:
 | 5 | Claude rarely makes the same mistake twice | The same corrections keep appearing |
 | 6 | The system feels effortless. You think about your work, not the system | You spend time debugging the harness instead of using it |
 | 7 | The system surfaces its own maintenance needs before you notice | You discover stale skills or bloated files by accident |
+| 8 | Broken references and naming drift are caught by a script, not by accident | You discover a phantom reference manually that the validator should have caught |
 
 ## When to stop adding
 

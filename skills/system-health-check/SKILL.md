@@ -17,6 +17,12 @@ Work through the checks below against the current harness. For each, report PASS
 
 ## Checks
 
+### 0. Deterministic validation
+
+If a validation script exists (e.g., `.claude/hooks/validate-integrity.sh`), run it first and report its output verbatim. This script mechanically checks structural invariants: referenced skills and agents exist, folder names match frontmatter names, cross-context connections resolve to real directories. It catches problems the LLM-based checks below would miss or find inconsistently.
+
+If the script does not exist, skip this step and proceed with the LLM checks. Note in the report: "No deterministic validator found. Consider building one (see the evolution checklist, Phase 8)."
+
 ### 1. Structure
 - Do the expected directories exist? (`.claude/rules/`, `.claude/skills/`, `output/`, and your contexts folder.)
 - Does `CLAUDE.md` exist and is it under ~100 lines? Over 100 lines with rules/skills available to offload to is the Monolith anti-pattern. WARN.
@@ -29,6 +35,7 @@ Work through the checks below against the current harness. For each, report PASS
 
 ### 3. References and links
 - Grep for `@.claude/reference/...` imports and `[...](path)` links in CLAUDE.md, rules, and skills. Flag any that point to a file that does not exist. Broken references are a common silent failure after a rename.
+- If the deterministic validator (check 0) already caught broken references, confirm they match what you find here. This LLM check adds value for semantic issues the script cannot catch: a reference that resolves to a file but the file's content no longer matches what the referencing context expects.
 
 ### 4. Single-source-of-truth drift
 This is the most valuable check. Enforce `references/single-source-of-truth.md`.

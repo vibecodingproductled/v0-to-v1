@@ -207,17 +207,17 @@ Templates show the parts. `references/worked-example.md` shows a complete, small
 
 ## Common anti-patterns
 
-See `references/anti-patterns.md` for the full list. The top 4:
+See `references/anti-patterns.md` for the full list (13 patterns). The ones that cause the most damage in mature harnesses:
 
-1. **The monolith CLAUDE.md**: Everything in one file. Loads every session. Wastes context on things that only matter sometimes.
-2. **The skill graveyard**: 50+ skills, most stale, no catalog. Intent matching becomes unreliable. Curate ruthlessly.
-3. **The rule echo**: Same rule defined in CLAUDE.md, in a rule file, and in a skill. They drift apart over time. Define each rule once, in the narrowest scope that covers it.
-4. **The duplicated fact**: The same fact (a date, a roster, a status) copied into two files that then drift. One home per fact; everywhere else points. This is the most common way a mature harness rots.
+1. **The duplicated fact** (#8): The same fact copied into two files that then drift. One home per fact; everywhere else points. This is the most common way a mature harness rots.
+2. **The self-poisoning metric** (#10): Your usage tracker measures its own overhead (health-check sweeps, quality-gate reads). Fix: track Skill tool activations, not file reads.
+3. **The phantom reference** (#12): References to renamed or deleted things survive because nothing checks them mechanically. Fix: a deterministic linter + pre-commit hook.
+4. **The skill graveyard** (#2): 50+ skills, most stale. Intent matching becomes unreliable. Curate ruthlessly.
 
 ## Evolution
 
 Your harness should evolve with your workflow. See `references/evolution-checklist.md` for the full progression from a bare CLAUDE.md to a production system with hooks, knowledge contexts, sub-agents, and self-healing diagnostics.
 
-Two shipped skills do the maintenance for you, so self-healing is real, not aspirational: **`system-health-check`** audits structure and single-source-of-truth drift, and **`system-evolution`** reads your usage logs and proposes what to add, merge, or archive. Run health-check when something feels off; run evolution monthly.
+Two shipped skills do the maintenance for you. **`system-health-check`** runs a deterministic validator (a bash script that mechanically checks that references resolve, names match folders, and structural invariants hold) before an LLM-based narrative that catches qualitative issues the script cannot. **`system-evolution`** reads your skill-activation and session logs and proposes what to add, merge, or archive, grounded in data. Run health-check when something feels off; run evolution monthly. Wire the validator as a git pre-commit hook for continuous enforcement.
 
 The principle: start small, add only what you need, encode corrections as durable rules, and periodically prune what you no longer use. The harness is done when it is invisible.

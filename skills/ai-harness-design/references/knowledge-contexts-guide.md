@@ -33,6 +33,10 @@ You can name the parent folder anything: `contexts/`, `initiatives/`, `projects/
 
 ## The CLAUDE.md anatomy
 
+The template has **core sections** (always present in every knowledge context) and **optional sections** (add when your domain needs them). Start with core only. Add optional sections as patterns emerge in your work. If you use a sub-agent to maintain contexts, make sure it knows which sections exist so it routes updates correctly.
+
+### Core sections (required)
+
 ```markdown
 # [Context Name]
 
@@ -44,7 +48,7 @@ You can name the parent folder anything: `contexts/`, `initiatives/`, `projects/
 ## Core Objective
 [1-2 sentences: what this initiative is trying to achieve and why it matters.]
 
-## Key Decisions
+## Key Decisions & Rationale
 
 [Reverse chronological. Each entry: what was decided, why, and what was traded off.]
 
@@ -71,6 +75,23 @@ You can name the parent folder anything: `contexts/`, `initiatives/`, `projects/
 - **2025-03-15**: [Major event, 1 sentence]
 - **2025-03-01**: Context created. [Why it was created.]
 ```
+
+### Optional sections (add as needed)
+
+These are domain-specific sections that some contexts need and others do not. Add them when the pattern is real, not in anticipation.
+
+| Section | When to add | Example |
+|---------|-------------|---------|
+| Experiments & Initiatives | You run structured experiments or track multiple workstreams | A/B tests with hypotheses, metrics, verdicts |
+| Active Hypotheses | Your work is hypothesis-driven | "We believe X because Y; test by Z" |
+| Competitive Intelligence | You track competitors | Feature comparisons, positioning gaps |
+| Discovery Interviews | You do structured user research | Interview tracker, synthesis pointers |
+| Success Metrics | You have quantified KRs | Metric name, current value, target, measurement method |
+| Frameworks Applied | You apply specific analytical frameworks | Which framework, when, what it produced |
+| Stakeholders & Context | Multiple people shape decisions | Names, roles, how they relate to this initiative |
+| Documents | You produce artifacts worth indexing | Pointers to Confluence pages, local drafts, decks |
+
+Do not add all of these at creation time. A knowledge context with 12 empty sections is worse than one with 7 populated ones. Let the work tell you what the context needs.
 
 ## Rules for maintaining knowledge contexts
 
