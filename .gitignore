@@ -1,0 +1,7 @@
+.DS_Store
+*.swp
+# Runtime state generated when skills are used inside a harness
+**/config.md.bak
+.claude/session-log.jsonl
+.claude/skill-usage.jsonl
+.claude/.last-evolution

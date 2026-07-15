@@ -139,7 +139,7 @@ Two triggers (either one is enough):
 
 1. Create `archive.md` in the same folder if it does not exist
 2. Move entries older than 90 days to the archive, grouped by month
-3. Add a pointer at the end of the active section: "Older entries: [archive.md](./archive.md)"
+3. Add a pointer at the end of the active section: `Older entries: [archive.md](./archive.md)`
 4. Keep: the 10 most recent entries, plus any still referenced in Current Status or Blockers
 
 ### Automating it

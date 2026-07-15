@@ -13,11 +13,11 @@ A harness should adapt to your real workflow, not the one you imagined when you 
 
 ## Inputs
 
-- `.claude/skill-usage.jsonl` (from the PostToolUse tracker in the hooks guide): which skills are *activated* (invoked via the Skill tool), how often. Note: if the log was built with an older `Read`-based tracker (matching on SKILL.md file reads rather than Skill tool invocations), the data is contaminated by health-check sweeps and quality-gate forced reads. Recommend starting a fresh log after switching to the Skill-based tracker.
+- `.claude/skill-usage.jsonl` (from the PostToolUse tracker in the `ai-harness-design` hooks guide): which skills are *activated* (invoked via the Skill tool), how often. Note: if the log was built with an older `Read`-based tracker (matching on SKILL.md file reads rather than Skill tool invocations), the data is contaminated by health-check sweeps and quality-gate forced reads. Recommend starting a fresh log after switching to the Skill-based tracker.
 - `.claude/session-log.jsonl` (from the Stop hook): which contexts and outputs you touch, and when. Only meaningful sessions are logged (empty rows are skipped).
 - The harness itself: current skills, rules, hooks, contexts.
 
-If a log is missing or thin, say so. Do not fabricate patterns from insufficient data. Recommend enabling the tracking hooks first (see `../ai-harness-design/references/hooks-guide.md`) and coming back once data has accumulated.
+If a log is missing or thin, say so. Do not fabricate patterns from insufficient data. Recommend enabling the tracking hooks first (the `ai-harness-design` skill's hooks guide has ready-to-use scripts; if that skill is not installed, point the user to the v0-to-v1 repo) and coming back once data has accumulated.
 
 ## What to look for
 

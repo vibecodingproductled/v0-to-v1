@@ -12,7 +12,7 @@ A structured workflow for writing strategy documents, experiment specs, proposal
 These are non-negotiable. Every document produced with this skill must follow them.
 
 ### Length
-750 words maximum. About 3 minutes of reading. This is a hard constraint, not a guideline. If you can't say it in 750 words, you haven't compressed enough. When trimming: cut redundancy first, then compress bullet points, then remove the weakest section.
+Every document gets a word budget agreed in Stage 1, and the budget is a hard constraint once set. Defaults by type: strategy docs, decision docs, and proposals get 750 words (about 3 minutes of reading); experiment specs get 1,000; technical specs get 1,500. Anything above the default requires the user to explicitly raise the budget, and the burden is on the content to justify it. If you can't hit the budget, you haven't compressed enough. When trimming: cut redundancy first, then compress bullet points, then remove the weakest section. Appendices (schemas, full data tables, API contracts) do not count against the budget but must be genuinely skippable.
 
 ### Voice
 Write like a human. Not an LLM. Not a press release. Plain, short sentences that a real person would type.

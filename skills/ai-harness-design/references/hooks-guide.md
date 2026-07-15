@@ -4,37 +4,51 @@ Hooks are shell scripts that run on specific Claude Code events. They are config
 
 ## Configuration
 
-Hooks are defined in `.claude/settings.json`:
+Hooks are defined in `.claude/settings.json`. Note the schema: each event maps to an array of matcher groups, and each group contains a `hooks` array. This nesting is required even for events that do not use matchers (SessionStart, Stop). A flat list of `{type, command}` objects directly under the event name will be silently ignored.
 
 ```json
 {
   "hooks": {
     "SessionStart": [
       {
-        "type": "command",
-        "command": ".claude/hooks/session-start.sh"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "Stop": [
       {
-        "type": "command",
-        "command": ".claude/hooks/log-session.sh",
-        "async": true
-      },
-      {
-        "type": "prompt",
-        "prompt": "Review if significant work happened in a knowledge context. If yes, offer to update its CLAUDE.md.",
-        "timeout": 15
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/log-session.sh",
+            "async": true,
+            "timeout": 15
+          },
+          {
+            "type": "prompt",
+            "prompt": "Review if significant work happened in a knowledge context. If yes, offer to update its CLAUDE.md.",
+            "timeout": 15
+          }
+        ]
       }
     ]
   }
 }
 ```
 
+Two portability notes:
+- Use `$CLAUDE_PROJECT_DIR` in the command path. A bare relative path resolves against the current working directory, which is not guaranteed to be the project root (e.g., after `cd` inside a session).
+- Hook handler types beyond `command` (`prompt`, `http`, `agent`, `mcp_tool`) and the `async` flag were added over time and are version-dependent. If a hook does not fire, check `claude --help hooks` or the hooks reference for your installed version, and verify your config in the `/hooks` menu.
+
 ## Hook types
 
 ### Command hooks
-Run a shell script. The script's stdout is injected into Claude's context. Use for:
+Run a shell script. The script's stdout is injected into Claude's context (on SessionStart and UserPromptSubmit). Use for:
 - Checking if files exist
 - Reading environment state
 - Appending to logs
@@ -44,6 +58,8 @@ Inject a prompt into the conversation. Use for:
 - Asking Claude to reflect on what happened
 - Suggesting actions based on the session's work
 - Reminding Claude to update context files
+
+Not all events support all handler types (SessionStart, for example, supports only `command` and `mcp_tool`). Check the reference for the event you are targeting.
 
 ## The two essential hooks
 
@@ -75,6 +91,14 @@ fi
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-.}"
 LOG_FILE="$PROJECT_DIR/.claude/session-log.jsonl"
+
+# Bootstrap: `find -newer` needs the log file to exist. Without this,
+# the first run finds nothing, never writes the file, and the hook is
+# a permanent no-op.
+if [ ! -f "$LOG_FILE" ]; then
+  mkdir -p "$(dirname "$LOG_FILE")"
+  touch "$LOG_FILE"
+fi
 
 BRAINS=""
 if [ -d "$PROJECT_DIR/contexts" ]; then
@@ -311,7 +335,7 @@ exit 0
 
 **Why warn, not block**: You are the operator. A blocking pre-commit hook stops work when a reference breaks mid-refactor, which is exactly when you are in the middle of fixing things. The warning surfaces the problem; you decide when to address it.
 
-**What to validate**: At minimum, check that every skill/agent name referenced in your harness files resolves to an existing directory or file. A bash script with `grep` and `find` is enough. See `system-health-check` for the full check list. The pre-commit hook runs the same validator with a `--quiet` flag that suppresses passing checks.
+**What to validate**: At minimum, check that every skill/agent name referenced in your harness files resolves to an existing directory or file. A ready-to-adapt implementation ships with this skill: copy `references/validate-integrity-template.sh` to `.claude/hooks/validate-integrity.sh` and adjust the paths. See `system-health-check` for the full check list. The pre-commit hook runs the same validator with a `--quiet` flag that suppresses passing checks.
 
 ## Rules for hooks
 

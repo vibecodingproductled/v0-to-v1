@@ -35,15 +35,31 @@ More skills ship weekly alongside the LinkedIn series.
 
 `system-evolution` (and part of `system-health-check`) read usage and session logs. Those logs come from the tracking hooks in `skills/ai-harness-design/references/hooks-guide.md`. Set those hooks up first and let data accumulate for a couple of weeks; without them, the evolution review has nothing to read.
 
-## Use
+## Install
 
-Clone the repo and point Claude Code at any skill:
+Cloning alone is not enough: Claude Code only discovers skills that live in a skills directory (`.claude/skills/` in a project, or `~/.claude/skills/` for all projects). Pick one of these:
+
+**Option A: install script**
 
 ```bash
 git clone https://github.com/vibecodingproductled/v0-to-v1.git
+cd v0-to-v1
+./install.sh          # into the current project
+./install.sh --user   # into ~/.claude/skills (available everywhere)
+./install.sh --link   # symlink so `git pull` updates skills in place
+./install.sh --only jtbd-discovery doc-coauthoring   # just the ones you want
 ```
 
-Then reference a skill directly: `/jtbd-discovery`, `/discovery-interview`, `/doc-coauthoring`, `/ai-harness-design`, `/system-health-check`, or `/system-evolution`.
+**Option B: plugin marketplace**
+
+```
+/plugin marketplace add vibecodingproductled/v0-to-v1
+/plugin install v0-to-v1
+```
+
+Once installed, skills auto-activate when your request matches their description (e.g., "help me synthesize these interviews" triggers `jtbd-discovery`). You can also invoke one explicitly by name.
+
+The `ai-harness-design`, `system-health-check`, and `system-evolution` skills work best installed together: health-check and evolution reference the hooks and single-source-of-truth material that harness-design ships.
 
 ## Principles
 

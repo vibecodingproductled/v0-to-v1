@@ -1,0 +1,11 @@
+{
+  "name": "v0-to-v1",
+  "owner": { "name": "Daniel Gameiro" },
+  "plugins": [
+    {
+      "name": "v0-to-v1",
+      "source": "./",
+      "description": "PM skills for building AI products from scratch."
+    }
+  ]
+}

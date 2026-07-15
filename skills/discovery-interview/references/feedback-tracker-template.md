@@ -1,6 +1,6 @@
 # Interview Feedback Tracker
 
-Copy this file to your project directory on first use. The discovery-interview skill appends one row after every interview.
+Copy this file to `.claude/discovery-interview/feedback-tracker.md` in your project on first use. The discovery-interview skill appends one row there after every interview. Do not edit or append to this template inside the skill directory.
 
 ## Scorecard Log
 

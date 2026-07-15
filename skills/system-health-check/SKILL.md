@@ -21,7 +21,7 @@ Work through the checks below against the current harness. For each, report PASS
 
 If a validation script exists (e.g., `.claude/hooks/validate-integrity.sh`), run it first and report its output verbatim. This script mechanically checks structural invariants: referenced skills and agents exist, folder names match frontmatter names, cross-context connections resolve to real directories. It catches problems the LLM-based checks below would miss or find inconsistently.
 
-If the script does not exist, skip this step and proceed with the LLM checks. Note in the report: "No deterministic validator found. Consider building one (see the evolution checklist, Phase 8)."
+If the script does not exist, skip this step and proceed with the LLM checks. Note in the report: "No deterministic validator found. Consider installing one; the `ai-harness-design` skill ships a ready-to-adapt template (validate-integrity-template.sh)."
 
 ### 1. Structure
 - Do the expected directories exist? (`.claude/rules/`, `.claude/skills/`, `output/`, and your contexts folder.)
@@ -38,7 +38,7 @@ If the script does not exist, skip this step and proceed with the LLM checks. No
 - If the deterministic validator (check 0) already caught broken references, confirm they match what you find here. This LLM check adds value for semantic issues the script cannot catch: a reference that resolves to a file but the file's content no longer matches what the referencing context expects.
 
 ### 4. Single-source-of-truth drift
-This is the most valuable check. Enforce `references/single-source-of-truth.md`.
+This is the most valuable check. Enforce the one-home-per-fact rule: each fact lives in exactly one file, and every other file that needs it holds a pointer. (Full treatment: the single-source-of-truth reference doc that ships with the `ai-harness-design` skill, if installed.)
 - **Template artifacts**: grep `CLAUDE.local.md` (and CLAUDE.md) for `[bracket]` placeholders like `[DATE]`, `[Your name]`, `[role]`. Any left means the file was never filled in. WARN.
 - **Duplicated facts**: flag when the always-loaded personal config restates something a knowledge context owns instead of pointing to it. Heuristics: a stakeholder roster beyond the user's own reporting line, hard dates (launch/milestone dates), a status value, or a goals table that also appears in a context. These belong in the owning context; the personal config should hold a pointer. WARN with the specific duplicated fact and where its real home is.
 - **Staleness**: compare the `Last Updated` date in the personal config against the newest `Last Updated` across your knowledge contexts. If the personal config is older and still carries volatile facts, it is probably drifting. WARN.

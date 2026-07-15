@@ -1,12 +1,12 @@
 ---
 name: discovery-interview
 description: |
-  Bias-aware discovery interview system. Process raw interview notes into structured writeups,
-  propagate evidence to your problem framework, reflect on framework evolution, and score your
-  interview technique with persistent tracking.
-  Use when: "/discovery-interview", "process interview", "write up interview", "interview writeup",
-  "score my interview", "interview feedback".
-  Complements jtbd-discovery (problem framing): this skill handles the interview lifecycle itself.
+  Bias-aware discovery interview processing. Turn raw interview notes or transcripts into
+  structured writeups, propagate evidence to a problem framework, and score interview
+  technique with persistent tracking. Use when the user shares interview notes or a
+  transcript, or asks to "process an interview", "write up an interview", "score my
+  interview", or wants "interview feedback". Do NOT use for designing interview scripts or
+  synthesizing findings across many interviews; that is jtbd-discovery.
 ---
 
 # Discovery Interview
@@ -29,7 +29,9 @@ This skill is the operational counterpart to recognizing your own bias. Knowing 
 
 ## Phase 0: SETUP (first run only)
 
-On first invocation, check whether `config.md` exists in this skill's directory. If not, walk the user through setup:
+Configuration and tracker state live in the user's project at `.claude/discovery-interview/`, never inside this skill's directory. Skill directories may be read-only (plugin installs, shared repos), and user state committed into a skill pollutes it for everyone else.
+
+On first invocation, check whether `.claude/discovery-interview/config.md` exists in the project. If not, walk the user through setup:
 
 1. **Notes location**: "Where do your interview notes live?"
    - A directory path (e.g., `research/interviews/`)
@@ -51,9 +53,9 @@ On first invocation, check whether `config.md` exists in this skill's directory.
    - Which phases are "unprompted" (no stimulus shown) vs. "prompted" (stimulus material shown)
    - This determines how evidence is weighted in later phases
 
-Save answers to `config.md` in this skill's directory. The user can edit this file directly to update their setup.
+Save answers to `.claude/discovery-interview/config.md` in the project (create the directory if needed). The user can edit this file directly to update their setup.
 
-On subsequent invocations, read `config.md` and skip to Phase 1.
+On subsequent invocations, read that file and skip to Phase 1.
 
 ## Phase 1: LOCATE
 
@@ -219,7 +221,7 @@ End with the single highest-leverage improvement for the next interview:
 
 ### 7e. Save to tracker
 
-Append this interview's scores to the persistent feedback tracker at [references/feedback-tracker-template.md](references/feedback-tracker-template.md) (copy to your project directory on first use).
+Append this interview's scores to the persistent feedback tracker at `.claude/discovery-interview/feedback-tracker.md` in the project. On first use, create it from [references/feedback-tracker-template.md](references/feedback-tracker-template.md). Never append rows to the template inside the skill directory.
 
 The tracker accumulates across all interviews so you can see your progression over 5, 10, 20+ sessions.
 

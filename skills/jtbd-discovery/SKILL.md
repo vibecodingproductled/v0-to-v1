@@ -1,6 +1,6 @@
 ---
 name: jtbd-discovery
-description: Run discovery interviews that surface real struggles, not feature requests. Use when starting user research, planning interview rounds, synthesizing interview data, or framing problems as Jobs to Be Done. Covers the full arc from interview design through root cause identification.
+description: Design discovery research and synthesize it into Jobs to Be Done. Use when planning an interview round, writing an interview script, synthesizing findings across interviews, separating symptoms from root causes, or framing problems as testable hypotheses. Do NOT use for processing a single interview's notes into a writeup; that is discovery-interview.
 ---
 
 # JTBD Discovery
@@ -98,7 +98,7 @@ Each trunk-branch pair becomes a hypothesis:
 
 > "We believe [target users] struggle to [trunk] because [branch]. If we [proposed solution], we expect [measurable outcome] to improve by [threshold]. We'll know we're wrong if [falsification criteria]."
 
-This is where discovery ends and experimentation begins. See the `experiment-design` skill for what comes next.
+This is where discovery ends and experimentation begins: each hypothesis gets a smallest-possible test with a pre-registered success threshold and a kill criterion.
 
 ## Anti-patterns
 
