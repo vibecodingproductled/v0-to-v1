@@ -1,0 +1,984 @@
+[
+  {
+    "id": "BREEAM-Hea01",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Health and Wellbeing",
+    "issue": "Visual comfort",
+    "credits_available": 4,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "average_daylight_factor",
+        "threshold": 2.0,
+        "unit": "%",
+        "standard": "BS EN 17037:2018",
+        "credit_level": "1 credit (daylight)",
+        "notes": "Average daylight factor >= 2% across the working plane in at least 80% of the floor area"
+      },
+      {
+        "space_types": ["classroom", "teaching_space"],
+        "metric": "average_daylight_factor",
+        "threshold": 3.0,
+        "unit": "%",
+        "standard": "BS EN 17037:2018",
+        "credit_level": "1 credit (daylight)",
+        "notes": "Average daylight factor >= 3% across the working plane in at least 80% of the floor area"
+      },
+      {
+        "space_types": ["office", "classroom", "teaching_space", "open_plan_office"],
+        "metric": "daylight_uniformity_ratio",
+        "threshold": 0.3,
+        "unit": "ratio (minimum point / average)",
+        "standard": "BS EN 17037:2018",
+        "credit_level": "1 credit (daylight)",
+        "notes": "Uniformity ratio of at least 0.3 must be achieved alongside the daylight factor target"
+      },
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "maintained_illuminance",
+        "threshold": 500,
+        "unit": "lux",
+        "standard": "BS EN 12464-1:2021",
+        "credit_level": "1 credit (artificial lighting)",
+        "notes": "Maintained illuminance on the task area for office work"
+      },
+      {
+        "space_types": ["classroom", "teaching_space"],
+        "metric": "maintained_illuminance",
+        "threshold": 300,
+        "unit": "lux",
+        "standard": "BS EN 12464-1:2021",
+        "credit_level": "1 credit (artificial lighting)",
+        "notes": "Maintained illuminance on the task area for classrooms and teaching spaces"
+      },
+      {
+        "space_types": ["office"],
+        "metric": "unified_glare_rating",
+        "threshold": 19,
+        "unit": "UGR (max)",
+        "standard": "BS EN 12464-1:2021",
+        "credit_level": "1 credit (artificial lighting)",
+        "notes": "UGR limit for reading, writing, and data processing tasks in offices"
+      },
+      {
+        "space_types": ["classroom", "teaching_space"],
+        "metric": "unified_glare_rating",
+        "threshold": 19,
+        "unit": "UGR (max)",
+        "standard": "BS EN 12464-1:2021",
+        "credit_level": "1 credit (artificial lighting)",
+        "notes": "UGR limit for classrooms and lecture halls"
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office"],
+        "metric": "view_out",
+        "threshold": "adequate view from occupied spaces",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Hea 01",
+        "credit_level": "1 credit (view out)",
+        "notes": "View of the sky and landscape/ground from at least 95% of the floor area of relevant occupied rooms. View should be at eye level for seated or standing occupants."
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office"],
+        "metric": "glare_control_blinds",
+        "threshold": "occupant-controlled solar shading on all relevant glazing",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Hea 01",
+        "credit_level": "1 credit (glare control)",
+        "notes": "Glare control must allow occupants to control the amount of daylight entering the space while maintaining a view out"
+      }
+    ],
+    "minimum_standards": {
+      "excellent": "At least 2 credits achieved",
+      "outstanding": "At least 2 credits achieved"
+    },
+    "source_clause": "Hea 01"
+  },
+  {
+    "id": "BREEAM-Hea02",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Health and Wellbeing",
+    "issue": "Indoor air quality",
+    "credits_available": 3,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "fresh_air_supply_rate",
+        "threshold": 8,
+        "unit": "L/s per person",
+        "standard": "BS EN 16798-1:2019 Category II",
+        "credit_level": "prerequisite for credits",
+        "notes": "Outdoor air supply rate for offices at Category II (normal level of expectation for new and renovated buildings). Applies to mechanical and mixed-mode ventilation systems."
+      },
+      {
+        "space_types": ["classroom", "teaching_space"],
+        "metric": "fresh_air_supply_rate",
+        "threshold": 5,
+        "unit": "L/s per person",
+        "standard": "BS EN 16798-1:2019 Category II / BB101",
+        "credit_level": "prerequisite for credits",
+        "notes": "Outdoor air supply rate for classrooms. BB101 specifies minimum 5 L/s per person for teaching spaces, with additional allowance for building emissions."
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office", "teaching_space"],
+        "metric": "co2_concentration_above_outdoor",
+        "threshold": 1000,
+        "unit": "ppm above outdoor ambient",
+        "standard": "BS EN 16798-1:2019 Category II",
+        "credit_level": "prerequisite for credits",
+        "notes": "Indoor CO2 concentration must not exceed outdoor ambient by more than 1000 ppm (approximately 800 ppm for Category II). Outdoor ambient is typically assumed as 400 ppm."
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office", "teaching_space"],
+        "metric": "purge_ventilation",
+        "threshold": "operable windows or equivalent providing at least 4 ACH",
+        "unit": "qualitative / ACH",
+        "standard": "BREEAM NC 2023 Hea 02",
+        "credit_level": "1 credit",
+        "notes": "Facility for purge ventilation by natural or mechanical means. Where windows are provided, total openable area should achieve at least 4 air changes per hour."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "no_smoking_zone_distance",
+        "threshold": 10,
+        "unit": "m from building entrances",
+        "standard": "BREEAM NC 2023 Hea 02",
+        "credit_level": "prerequisite for credits",
+        "notes": "No smoking within 10 m of building entrances, operable windows, and air intakes. Appropriate signage must be provided."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "voc_emissions_finishes",
+        "threshold": "compliant with EU-LCI values or equivalent",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Hea 02 / ISO 16000",
+        "credit_level": "1 credit (IAQ plan)",
+        "notes": "Internally applied paints, varnishes, flooring, ceiling tiles, and adhesives must be tested and certified to meet EU-LCI or equivalent VOC emission limits"
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Hea 02"
+  },
+  {
+    "id": "BREEAM-Hea04",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Health and Wellbeing",
+    "issue": "Thermal comfort",
+    "credits_available": 2,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["office", "classroom", "open_plan_office", "teaching_space"],
+        "metric": "predicted_mean_vote",
+        "threshold": "-0.5 to +0.5",
+        "unit": "PMV",
+        "standard": "BS EN ISO 7730:2005",
+        "credit_level": "1 credit",
+        "notes": "PMV within -0.5 to +0.5 corresponds to PPD < 10%. Thermal modelling must demonstrate compliance for typical occupied hours in both summer (with cooling if applicable) and winter conditions."
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office", "teaching_space"],
+        "metric": "adaptive_comfort_overheating",
+        "threshold": "Category II limits not exceeded for more than 3% of occupied hours",
+        "unit": "qualitative / % hours",
+        "standard": "BS EN 16798-1:2019 / CIBSE TM52",
+        "credit_level": "1 credit (free-running buildings)",
+        "notes": "For naturally ventilated or free-running buildings, the adaptive thermal comfort model may be used as an alternative to PMV. Operative temperature must not exceed the upper limit of Category II for more than 3% of occupied hours (CIBSE TM52 Criterion 1)."
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office", "teaching_space"],
+        "metric": "thermal_modelling",
+        "threshold": "dynamic thermal simulation required",
+        "unit": "qualitative",
+        "standard": "CIBSE Guide A / BS EN ISO 7730",
+        "credit_level": "prerequisite for credits",
+        "notes": "A thermal modelling report using dynamic simulation must be produced to demonstrate compliance. The model must account for internal gains, solar gains, ventilation strategy, and building fabric."
+      },
+      {
+        "space_types": ["office", "classroom", "open_plan_office", "teaching_space"],
+        "metric": "thermal_zoning",
+        "threshold": "individual or local control of heating/cooling in zones <= 100 m2",
+        "unit": "m2 per zone",
+        "standard": "BREEAM NC 2023 Hea 04",
+        "credit_level": "1 credit (thermal zoning)",
+        "notes": "Occupied areas must be divided into thermal zones of no more than 100 m2, each with independent temperature control accessible to occupants."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Hea 04"
+  },
+  {
+    "id": "BREEAM-Hea05",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Health and Wellbeing",
+    "issue": "Acoustic performance",
+    "credits_available": 3,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "indoor_ambient_noise_level",
+        "threshold": "35-40",
+        "unit": "dB LAeq",
+        "standard": "BS 8233:2014",
+        "credit_level": "1 credit",
+        "notes": "Indoor ambient noise level in offices: 35 dB LAeq for executive/private offices, 40 dB LAeq for open plan offices. These are design target values from BS 8233 Table 4."
+      },
+      {
+        "space_types": ["classroom", "teaching_space"],
+        "metric": "indoor_ambient_noise_level",
+        "threshold": "30-35",
+        "unit": "dB LAeq",
+        "standard": "BB93:2015 (Acoustic design of schools)",
+        "credit_level": "1 credit",
+        "notes": "Indoor ambient noise level in primary school classrooms: 30 dB LAeq; secondary school classrooms: 35 dB LAeq. Per BB93 Table 1.2."
+      },
+      {
+        "space_types": ["classroom", "teaching_space"],
+        "metric": "reverberation_time",
+        "threshold": 0.6,
+        "unit": "seconds (Tmf)",
+        "standard": "BB93:2015",
+        "credit_level": "1 credit",
+        "notes": "Mid-frequency reverberation time (average of 500 Hz, 1 kHz, 2 kHz) for classrooms should not exceed 0.6 s for primary schools and 0.8 s for secondary schools."
+      },
+      {
+        "space_types": ["office"],
+        "metric": "reverberation_time",
+        "threshold": "0.5-0.8",
+        "unit": "seconds (Tmf)",
+        "standard": "BS 8233:2014 / BCO Guide",
+        "credit_level": "1 credit",
+        "notes": "Mid-frequency reverberation time for small offices approximately 0.5 s, open plan offices 0.5-0.8 s depending on size and use."
+      },
+      {
+        "space_types": ["office", "classroom", "meeting_room"],
+        "metric": "sound_insulation_DnTw",
+        "threshold": 45,
+        "unit": "dB DnT,w",
+        "standard": "BS 8233:2014 / BB93:2015",
+        "credit_level": "1 credit",
+        "notes": "Minimum weighted standardized level difference between adjacent enclosed rooms. Offices: DnT,w >= 45 dB for cellular offices (BS 8233). Classrooms: DnT,w >= 45 dB between teaching spaces (BB93 Table 1.3). Higher values required adjacent to noisy areas."
+      },
+      {
+        "space_types": ["office", "classroom", "meeting_room", "open_plan_office"],
+        "metric": "impact_sound_insulation",
+        "threshold": 62,
+        "unit": "dB L'nT,w (max)",
+        "standard": "BB93:2015 / Approved Document E",
+        "credit_level": "1 credit",
+        "notes": "Maximum weighted standardized impact sound pressure level for floors separating teaching/office spaces. L'nT,w <= 62 dB for classrooms per BB93."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Hea 05"
+  },
+  {
+    "id": "BREEAM-Ene01",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Energy",
+    "issue": "Reduction of energy use",
+    "credits_available": 15,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "energy_performance_ratio",
+        "threshold": 0.9,
+        "unit": "EPR",
+        "standard": "BREEAM NC 2023 Ene 01",
+        "credit_level": "1 credit",
+        "notes": "EPR <= 0.9 achieves 1 credit. EPR is the ratio of actual/predicted building energy performance to the notional building baseline."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "energy_performance_ratio",
+        "threshold": 0.6,
+        "unit": "EPR",
+        "standard": "BREEAM NC 2023 Ene 01",
+        "credit_level": "4 credits",
+        "notes": "EPR <= 0.6 achieves 4 credits"
+      },
+      {
+        "space_types": ["all"],
+        "metric": "energy_performance_ratio",
+        "threshold": 0.4,
+        "unit": "EPR",
+        "standard": "BREEAM NC 2023 Ene 01",
+        "credit_level": "8 credits",
+        "notes": "EPR <= 0.4 achieves 8 credits"
+      },
+      {
+        "space_types": ["all"],
+        "metric": "energy_performance_ratio",
+        "threshold": 0.25,
+        "unit": "EPR",
+        "standard": "BREEAM NC 2023 Ene 01",
+        "credit_level": "12 credits",
+        "notes": "EPR <= 0.25 achieves 12 credits"
+      },
+      {
+        "space_types": ["all"],
+        "metric": "energy_performance_ratio",
+        "threshold": 0.0,
+        "unit": "EPR",
+        "standard": "BREEAM NC 2023 Ene 01",
+        "credit_level": "15 credits (net zero carbon)",
+        "notes": "EPR = 0.0 (net zero regulated energy) achieves all 15 credits. Requires zero or negative net CO2 emissions from regulated energy, typically through on-site renewables and any allowable offsets."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": "4 credits (EPR <= 0.6)",
+      "outstanding": "8 credits (EPR <= 0.4)"
+    },
+    "source_clause": "Ene 01"
+  },
+  {
+    "id": "BREEAM-Ene02",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Energy",
+    "issue": "Energy monitoring",
+    "credits_available": 2,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "sub_metering_by_end_use",
+        "threshold": "separate sub-meters for each major energy-consuming system",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Ene 02",
+        "credit_level": "1 credit",
+        "notes": "Sub-metering for major energy-consuming systems: heating, cooling, ventilation/air handling, lighting, small power, renewable energy generation, and other significant loads (>10% of total). Each sub-meter must be connected to a BMS or accessible energy monitoring system."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "display_energy_certificate_or_equivalent",
+        "threshold": "real-time energy display accessible to building occupants",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Ene 02",
+        "credit_level": "2 credits",
+        "notes": "An energy display device or dashboard accessible to building occupants, showing real-time and historical energy consumption data. Must cover at least the end uses that are sub-metered."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "tenant_sub_metering",
+        "threshold": "individual metering for tenancies > 200 m2",
+        "unit": "m2",
+        "standard": "BREEAM NC 2023 Ene 02",
+        "credit_level": "1 credit",
+        "notes": "In multi-tenant buildings, individual metering must be provided for each tenancy or floor area exceeding 200 m2 to enable tenant-specific energy management."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Ene 02"
+  },
+  {
+    "id": "BREEAM-Ene04",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Energy",
+    "issue": "Low carbon design",
+    "credits_available": 3,
+    "assessment_stages": ["design"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "passive_design_analysis",
+        "threshold": "documented passive design analysis at concept stage",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Ene 04",
+        "credit_level": "1 credit",
+        "notes": "A passive design analysis must be carried out at concept design stage, covering building form, fabric performance, solar gains, natural ventilation potential, daylighting, and thermal mass. The analysis must demonstrate how passive measures reduce energy demand before active systems are sized."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "lzc_feasibility_study",
+        "threshold": "feasibility study for local low or zero carbon (LZC) energy sources",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Ene 04",
+        "credit_level": "1 credit",
+        "notes": "A feasibility study of local LZC technologies appropriate to the site, including solar PV, solar thermal, heat pumps, wind, CHP, biomass, and district heating. The study must evaluate technical feasibility, CO2 savings, and cost-effectiveness."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "free_cooling_analysis",
+        "threshold": "analysis of free cooling potential documented",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Ene 04",
+        "credit_level": "1 credit",
+        "notes": "Analysis of free cooling strategies including night purge ventilation, ground cooling, and economiser cycles. Must demonstrate that free cooling has been considered and, where viable, incorporated into the HVAC strategy."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Ene 04"
+  },
+  {
+    "id": "BREEAM-Wat01",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Water",
+    "issue": "Water consumption",
+    "credits_available": 5,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["toilet", "washroom", "bathroom"],
+        "metric": "wc_flush_volume",
+        "threshold": "6/4",
+        "unit": "litres (full/reduced flush)",
+        "standard": "BREEAM NC 2023 Wat 01 baseline",
+        "credit_level": "baseline (0 credits)",
+        "notes": "Baseline WC: 6 litre full flush / 4 litre reduced flush (dual flush). Credits awarded for reductions below this baseline. 4.5/3L achieves approx 25% reduction per component; 4/2.6L achieves further savings."
+      },
+      {
+        "space_types": ["toilet", "washroom", "bathroom"],
+        "metric": "whb_flow_rate",
+        "threshold": 6,
+        "unit": "L/min",
+        "standard": "BREEAM NC 2023 Wat 01 baseline",
+        "credit_level": "baseline (0 credits)",
+        "notes": "Baseline wash hand basin flow rate: 6 L/min. Credits awarded for reductions. Infrared/push taps at 2-3 L/min achieve significant reductions."
+      },
+      {
+        "space_types": ["shower_room", "changing_room", "bathroom"],
+        "metric": "shower_flow_rate",
+        "threshold": 8,
+        "unit": "L/min",
+        "standard": "BREEAM NC 2023 Wat 01 baseline",
+        "credit_level": "baseline (0 credits)",
+        "notes": "Baseline shower flow rate: 8 L/min. Low-flow showerheads at 6 L/min achieve 25% reduction per component."
+      },
+      {
+        "space_types": ["kitchen", "kitchenette"],
+        "metric": "kitchen_tap_flow_rate",
+        "threshold": 6,
+        "unit": "L/min",
+        "standard": "BREEAM NC 2023 Wat 01 baseline",
+        "credit_level": "baseline (0 credits)",
+        "notes": "Baseline kitchen tap flow rate: 6 L/min."
+      },
+      {
+        "space_types": ["toilet", "washroom", "bathroom", "shower_room", "kitchen"],
+        "metric": "water_consumption_reduction",
+        "threshold": 12.5,
+        "unit": "% reduction from baseline",
+        "standard": "BREEAM NC 2023 Wat 01",
+        "credit_level": "1 credit",
+        "notes": "12.5% reduction in water consumption from the baseline specification using the BREEAM Wat 01 calculator tool"
+      },
+      {
+        "space_types": ["toilet", "washroom", "bathroom", "shower_room", "kitchen"],
+        "metric": "water_consumption_reduction",
+        "threshold": 25,
+        "unit": "% reduction from baseline",
+        "standard": "BREEAM NC 2023 Wat 01",
+        "credit_level": "2 credits",
+        "notes": "25% reduction in water consumption from the baseline specification"
+      },
+      {
+        "space_types": ["toilet", "washroom", "bathroom", "shower_room", "kitchen"],
+        "metric": "water_consumption_reduction",
+        "threshold": 40,
+        "unit": "% reduction from baseline",
+        "standard": "BREEAM NC 2023 Wat 01",
+        "credit_level": "3 credits",
+        "notes": "40% reduction in water consumption from the baseline specification"
+      },
+      {
+        "space_types": ["toilet", "washroom", "bathroom", "shower_room", "kitchen"],
+        "metric": "water_consumption_reduction",
+        "threshold": 50,
+        "unit": "% reduction from baseline",
+        "standard": "BREEAM NC 2023 Wat 01",
+        "credit_level": "4 credits",
+        "notes": "50% reduction in water consumption from the baseline specification"
+      },
+      {
+        "space_types": ["toilet", "washroom", "bathroom", "shower_room", "kitchen"],
+        "metric": "water_consumption_reduction",
+        "threshold": 55,
+        "unit": "% reduction from baseline",
+        "standard": "BREEAM NC 2023 Wat 01",
+        "credit_level": "5 credits (exemplary)",
+        "notes": "55% reduction in water consumption from the baseline specification. May include greywater recycling or rainwater harvesting."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": "1 credit (12.5% reduction)",
+      "outstanding": "1 credit (12.5% reduction)"
+    },
+    "source_clause": "Wat 01"
+  },
+  {
+    "id": "BREEAM-Wat02",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Water",
+    "issue": "Water monitoring",
+    "credits_available": 2,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "water_meter_pulsed_output",
+        "threshold": "pulsed water meter on mains supply with BMS connection",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Wat 02",
+        "credit_level": "1 credit",
+        "notes": "A pulsed water meter must be specified on the mains water supply, connected to a BMS or accessible data logger to enable monitoring of consumption and identification of leaks."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "leak_detection_system",
+        "threshold": "flow-based or pressure-based leak detection on mains supply",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Wat 02",
+        "credit_level": "1 credit",
+        "notes": "A leak detection system must be specified that is capable of detecting major leaks on the mains cold water supply. The system should alert building management when abnormal flow or pressure drop is detected."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "sub_metering",
+        "threshold": "sub-meters on significant water uses (> 10% of total)",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Wat 02",
+        "credit_level": "2 credits",
+        "notes": "Water sub-meters on areas or systems that account for more than 10% of total water consumption, e.g. irrigation, cooling towers, kitchen/catering, laundry. Enables targeted water management."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Wat 02"
+  },
+  {
+    "id": "BREEAM-Mat01",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Materials",
+    "issue": "Life cycle impacts",
+    "credits_available": 7,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "lca_scope",
+        "threshold": "whole building LCA covering modules A1-A5, B1-B5, C1-C4, D",
+        "unit": "qualitative",
+        "standard": "EN 15978:2011",
+        "credit_level": "prerequisite for credits",
+        "notes": "Life cycle assessment must cover the core building elements (substructure, superstructure, external walls, windows, roof, internal walls, floors) across production (A1-A3), construction (A4-A5), use (B1-B5), end of life (C1-C4), and beyond building life (D) stages per EN 15978."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "epd_coverage",
+        "threshold": "EPDs for key building elements per EN 15804",
+        "unit": "qualitative",
+        "standard": "EN 15804:2012+A2:2019",
+        "credit_level": "contributes to credits",
+        "notes": "Environmental Product Declarations (EPDs) used in the LCA must comply with EN 15804. Product-specific EPDs from third-party verified sources score higher than generic industry data."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "embodied_carbon_reporting",
+        "threshold": "reported in kgCO2e/m2 GIA",
+        "unit": "kgCO2e/m2 GIA",
+        "standard": "BREEAM NC 2023 Mat 01 / RICS Whole Life Carbon",
+        "credit_level": "1 credit (reporting)",
+        "notes": "Embodied carbon must be calculated and reported per m2 of gross internal area. The assessment must use the BREEAM Mat 01 calculator or an equivalent tool that aligns with EN 15978 and RICS guidance."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "elemental_lca_comparison",
+        "threshold": "comparison of at least 2 design options for each key building element",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Mat 01",
+        "credit_level": "credits vary by number of elements assessed",
+        "notes": "For each key building element (superstructure, external walls, upper floors, roof, internal walls, windows), at least two specification options must be compared using LCA data to identify lower-impact choices."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": "At least 1 credit (LCA reporting)",
+      "outstanding": "At least 2 credits"
+    },
+    "source_clause": "Mat 01"
+  },
+  {
+    "id": "BREEAM-Mat03",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Materials",
+    "issue": "Responsible sourcing of construction products",
+    "credits_available": 3,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "responsible_sourcing_percentage",
+        "threshold": "80% of key building elements by value or volume",
+        "unit": "% of elements responsibly sourced",
+        "standard": "BREEAM NC 2023 Mat 03 / BES 6001",
+        "credit_level": "3 credits (all key elements)",
+        "notes": "Key building elements include: frame/structure, ground floor, upper floors, roof, external walls, internal walls, foundation/substructure, staircase, and façade. Responsible sourcing is demonstrated through BES 6001 certification, FSC/PEFC for timber, ISO 14001 EMS, or equivalent schemes recognised by BREEAM."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "timber_certification",
+        "threshold": "100% legally harvested, target 100% FSC or PEFC certified",
+        "unit": "qualitative",
+        "standard": "FSC / PEFC / BREEAM NC 2023 Mat 03",
+        "credit_level": "contributes to credits",
+        "notes": "All timber and timber-based products must be legally sourced at minimum. Higher credit levels require certification under FSC, PEFC, or equivalent chain-of-custody schemes."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "contractor_ems",
+        "threshold": "ISO 14001 or equivalent EMS for main contractor and key subcontractors",
+        "unit": "qualitative",
+        "standard": "ISO 14001 / BREEAM NC 2023 Mat 03",
+        "credit_level": "contributes to credits",
+        "notes": "The main contractor and key subcontractors (demolition, groundworks, building fabric) should operate a certified Environmental Management System, preferably ISO 14001 or EMAS."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Mat 03"
+  },
+  {
+    "id": "BREEAM-Pol01",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Pollution",
+    "issue": "Impact of refrigerants",
+    "credits_available": 3,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "refrigerant_gwp",
+        "threshold": 10,
+        "unit": "GWP (CO2 equivalent)",
+        "standard": "BREEAM NC 2023 Pol 01",
+        "credit_level": "3 credits (no/ultra-low GWP)",
+        "notes": "Systems using no refrigerants, or refrigerants with GWP <= 10 (e.g., R-290 propane GWP=3, R-744 CO2 GWP=1, R-717 ammonia GWP=0) achieve maximum credits. Common HFCs like R-410A (GWP 2088) and R-134a (GWP 1430) score poorly."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "direct_effect_co2_equivalent",
+        "threshold": "calculated per kW of cooling capacity",
+        "unit": "kgCO2e/kW",
+        "standard": "BREEAM NC 2023 Pol 01",
+        "credit_level": "1-3 credits based on score",
+        "notes": "Direct effect lifecycle CO2 equivalent is calculated as: DE = GWP * refrigerant charge (kg) * annual leak rate (%) * system life (years) / cooling capacity (kW). Lower DE scores achieve more credits. Annual leak rate assumptions: hermetic systems 2%, remote systems 5%, split/VRF systems 3%."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "leak_detection",
+        "threshold": "automatic refrigerant leak detection system installed",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Pol 01 / F-Gas Regulation",
+        "credit_level": "contributes to credits",
+        "notes": "Automatic leak detection is required for systems containing >= 500 tonnes CO2 equivalent charge (per EU F-Gas Regulation). BREEAM awards credits where leak detection is installed regardless of charge size."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "refrigerant_charge_limit",
+        "threshold": "minimised charge per kW of duty",
+        "unit": "kg/kW",
+        "standard": "BREEAM NC 2023 Pol 01",
+        "credit_level": "contributes to credits",
+        "notes": "Reduced refrigerant charge relative to cooling capacity contributes to a lower direct effect score. Strategies include using smaller distributed systems, indirect cooling, or low-charge technologies."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Pol 01"
+  },
+  {
+    "id": "BREEAM-Pol03",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Pollution",
+    "issue": "Surface water run-off",
+    "credits_available": 5,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["site_level"],
+        "metric": "peak_runoff_attenuation",
+        "threshold": "attenuate to greenfield run-off rate for 1-year and 100-year return periods",
+        "unit": "L/s/ha (site-specific)",
+        "standard": "BREEAM NC 2023 Pol 03 / CIRIA SuDS Manual C753",
+        "credit_level": "2 credits",
+        "notes": "Post-development peak rate of run-off must not exceed the pre-development (greenfield) rate for return periods up to and including the 1 in 100 year event, with an allowance for climate change (typically +40%). Previously developed (brownfield) sites should aim for greenfield rates where feasible."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "suds_management_train",
+        "threshold": "SuDS strategy using at least 2 stages of the management train",
+        "unit": "qualitative",
+        "standard": "CIRIA SuDS Manual C753 / BREEAM NC 2023 Pol 03",
+        "credit_level": "1 credit",
+        "notes": "A sustainable drainage strategy employing at least two stages of the SuDS management train: prevention, source control, site control, regional control. Acceptable techniques include green roofs, permeable paving, swales, bioretention, detention basins, and attenuation tanks."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "runoff_volume_reduction",
+        "threshold": "minimise total volume of run-off leaving the site",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Pol 03",
+        "credit_level": "1 credit",
+        "notes": "Demonstrate that the total volume of surface water run-off is reduced through infiltration, evapotranspiration, or rainwater harvesting. Infiltration testing (BRE DG365) should be carried out to determine site suitability."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "watercourse_pollution_prevention",
+        "threshold": "pollution prevention measures for all surface water discharge",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Pol 03 / CIRIA C753",
+        "credit_level": "1 credit",
+        "notes": "Oil interceptors, silt traps, or bioretention treatment for car parks and hardstanding areas. All surface water discharges must have appropriate pollution prevention to protect receiving watercourses. SuDS components that provide treatment (e.g. swales, filter strips, wetlands) contribute to this."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Pol 03"
+  },
+  {
+    "id": "BREEAM-Tra01",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Transport",
+    "issue": "Transport assessment and travel plan",
+    "credits_available": 3,
+    "assessment_stages": ["design"],
+    "room_level_requirements": [
+      {
+        "space_types": ["site_level"],
+        "metric": "accessibility_index",
+        "threshold": "calculated based on public transport frequency and proximity",
+        "unit": "AI score",
+        "standard": "BREEAM NC 2023 Tra 01",
+        "credit_level": "1-3 credits based on AI score",
+        "notes": "The Accessibility Index (AI) measures proximity and frequency of public transport services within walking distance of the site. AI = sum of (services per hour / walk time in minutes) for bus stops within 650m and rail/tram stations within 1000m. Higher AI scores achieve more credits; thresholds vary by building type."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "bus_stop_proximity",
+        "threshold": 650,
+        "unit": "m walking distance",
+        "standard": "BREEAM NC 2023 Tra 01",
+        "credit_level": "contributes to AI",
+        "notes": "Bus stops within 650m walking distance contribute to the Accessibility Index calculation. Each qualifying route's service frequency is divided by the walk time to give that route's contribution to the AI."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "rail_station_proximity",
+        "threshold": 1000,
+        "unit": "m walking distance",
+        "standard": "BREEAM NC 2023 Tra 01",
+        "credit_level": "contributes to AI",
+        "notes": "Rail or tram stations within 1000m walking distance contribute to the Accessibility Index. Each qualifying service's frequency is divided by the walk time."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Tra 01"
+  },
+  {
+    "id": "BREEAM-Tra03",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Transport",
+    "issue": "Cyclist facilities",
+    "credits_available": 2,
+    "assessment_stages": ["design"],
+    "room_level_requirements": [
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "cycle_storage_spaces_staff",
+        "threshold": "1 per 10 staff or 1 per 200 m2 GIA (whichever is greater)",
+        "unit": "spaces",
+        "standard": "BREEAM NC 2023 Tra 03",
+        "credit_level": "1 credit",
+        "notes": "Secure, covered, and well-lit cycle storage for staff. Minimum provision is 1 space per 10 full-time equivalent staff members. Spaces must be within 100m of the building entrance and accessible without navigating steps."
+      },
+      {
+        "space_types": ["retail", "public_building"],
+        "metric": "cycle_storage_spaces_visitors",
+        "threshold": "1 per 500 m2 GIA or per local planning requirements",
+        "unit": "spaces",
+        "standard": "BREEAM NC 2023 Tra 03",
+        "credit_level": "1 credit",
+        "notes": "Visitor/customer cycle parking, clearly signed, within 50m of the main entrance. Short-stay Sheffield-stand type is acceptable for visitors."
+      },
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "shower_facilities",
+        "threshold": "1 shower per 10 cycle spaces",
+        "unit": "showers",
+        "standard": "BREEAM NC 2023 Tra 03",
+        "credit_level": "1 credit",
+        "notes": "Shower and changing facilities for cyclists. Minimum 1 shower per 10 cycle spaces, with associated changing area and lockers for personal belongings."
+      },
+      {
+        "space_types": ["office", "open_plan_office"],
+        "metric": "locker_facilities",
+        "threshold": "1 locker per cycle space",
+        "unit": "lockers",
+        "standard": "BREEAM NC 2023 Tra 03",
+        "credit_level": "contributes to credits",
+        "notes": "Personal lockers for cyclists to store clothing and equipment, located near the shower/changing facilities."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Tra 03"
+  },
+  {
+    "id": "BREEAM-Man03",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Management",
+    "issue": "Responsible construction practices",
+    "credits_available": 2,
+    "assessment_stages": ["post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["site_level"],
+        "metric": "considerate_constructors_scheme_score",
+        "threshold": 35,
+        "unit": "CCS points (out of 50)",
+        "standard": "Considerate Constructors Scheme / BREEAM NC 2023 Man 03",
+        "credit_level": "1 credit",
+        "notes": "Registration with the Considerate Constructors Scheme (or equivalent) and achieving a score of at least 35 out of 50. The scheme assesses site performance across five categories: care about appearance, respect the community, protect the environment, secure everyone's safety, value their workforce."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "considerate_constructors_scheme_score",
+        "threshold": 40,
+        "unit": "CCS points (out of 50)",
+        "standard": "Considerate Constructors Scheme / BREEAM NC 2023 Man 03",
+        "credit_level": "2 credits",
+        "notes": "CCS score of at least 40 out of 50 achieves the second credit."
+      },
+      {
+        "space_types": ["site_level"],
+        "metric": "environmental_management_plan",
+        "threshold": "compliant construction environmental management plan",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Man 03",
+        "credit_level": "prerequisite for credits",
+        "notes": "A site-specific Construction Environmental Management Plan (CEMP) must be in place, covering energy/water use monitoring on site, responsible disposal of construction waste, minimising pollution (air, water, noise, light), and biodiversity protection during construction."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Man 03"
+  },
+  {
+    "id": "BREEAM-Man04",
+    "system": "BREEAM",
+    "scheme": "New Construction",
+    "version": "2023",
+    "category": "Management",
+    "issue": "Commissioning and handover",
+    "credits_available": 4,
+    "assessment_stages": ["design", "post_construction"],
+    "room_level_requirements": [
+      {
+        "space_types": ["all"],
+        "metric": "seasonal_commissioning",
+        "threshold": "commissioning during both heating and cooling seasons",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Man 04 / CIBSE Code M",
+        "credit_level": "1 credit",
+        "notes": "Building services must be commissioned during both a heating and a cooling season (or simulated equivalent) within the first 12 months of occupation. A programme for seasonal commissioning must be specified at design stage and executed post-completion."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "building_user_guide",
+        "threshold": "non-technical building user guide produced and provided to occupants",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Man 04",
+        "credit_level": "1 credit",
+        "notes": "A non-technical guide for building occupants covering: how to operate heating/cooling controls, lighting controls, and ventilation; water-saving features and how they work; recycling facilities; transport options; emergency procedures. Must be tailored to the specific building."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "commissioning_schedule",
+        "threshold": "comprehensive commissioning programme covering all building services",
+        "unit": "qualitative",
+        "standard": "BREEAM NC 2023 Man 04 / CIBSE Code M",
+        "credit_level": "1 credit",
+        "notes": "A commissioning programme covering all building services (HVAC, lighting, controls, metering, renewable energy systems, water systems, fire detection, lifts). Must include pre-commissioning checks, functional performance testing, and post-handover fine-tuning."
+      },
+      {
+        "space_types": ["all"],
+        "metric": "aftercare_support",
+        "threshold": "minimum 12 months aftercare by the design/build team",
+        "unit": "months",
+        "standard": "BREEAM NC 2023 Man 04",
+        "credit_level": "1 credit",
+        "notes": "The client must appoint someone from the design/construction team to provide aftercare for at least 12 months post-handover. This includes a programme of post-occupancy evaluation, seasonal commissioning review, and resolution of identified defects or performance shortfalls."
+      }
+    ],
+    "minimum_standards": {
+      "excellent": null,
+      "outstanding": null
+    },
+    "source_clause": "Man 04"
+  }
+]

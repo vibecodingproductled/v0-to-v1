@@ -1,0 +1,32 @@
+{
+  "name": "Mixed-use building targeting BREEAM Very Good",
+  "description": "Mixed-use with retail ground floor and offices above. Tests handling of multiple building types.",
+  "project": {
+    "project_name": "Test Mixed Use",
+    "building_type": "mixed_use",
+    "location": {
+      "country": "UK",
+      "city": "Bristol"
+    },
+    "gross_floor_area": { "value": 4000, "unit": "sqm" },
+    "stories": 4,
+    "certification_target": {
+      "system": "BREEAM",
+      "scheme": "New Construction",
+      "version": "2023",
+      "level": "very_good"
+    },
+    "rooms": [
+      { "type": "retail_floor", "count": 2, "area_each": { "value": 200, "unit": "sqm" }, "occupancy": 20, "is_regularly_occupied": true },
+      { "type": "open_office", "count": 3, "area_each": { "value": 250, "unit": "sqm" }, "occupancy": 30, "is_regularly_occupied": true },
+      { "type": "meeting_room", "count": 4, "area_each": { "value": 20, "unit": "sqm" }, "occupancy": 6, "is_regularly_occupied": true },
+      { "type": "toilet", "count": 8, "area_each": { "value": 10, "unit": "sqm" }, "occupancy": 0, "is_regularly_occupied": false },
+      { "type": "storage", "count": 3, "area_each": { "value": 15, "unit": "sqm" }, "occupancy": 0, "is_regularly_occupied": false }
+    ]
+  },
+  "expected": {
+    "certification_levels": {
+      "very_good": { "min_score": 55 }
+    }
+  }
+}

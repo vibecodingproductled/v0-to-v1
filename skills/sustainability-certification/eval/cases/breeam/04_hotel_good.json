@@ -1,0 +1,33 @@
+{
+  "name": "Hotel targeting BREEAM Good",
+  "description": "Hotel with guest rooms, restaurant, and conference spaces. Tests diverse room type coverage.",
+  "project": {
+    "project_name": "Test Hotel",
+    "building_type": "hotel",
+    "location": {
+      "country": "UK",
+      "city": "Edinburgh"
+    },
+    "gross_floor_area": { "value": 5000, "unit": "sqm" },
+    "stories": 5,
+    "certification_target": {
+      "system": "BREEAM",
+      "scheme": "New Construction",
+      "version": "2023",
+      "level": "good"
+    },
+    "rooms": [
+      { "type": "guest_room", "count": 60, "area_each": { "value": 25, "unit": "sqm" }, "occupancy": 2, "is_regularly_occupied": true },
+      { "type": "restaurant", "count": 1, "area_each": { "value": 150, "unit": "sqm" }, "occupancy": 60, "is_regularly_occupied": true },
+      { "type": "conference_room", "count": 3, "area_each": { "value": 50, "unit": "sqm" }, "occupancy": 30, "is_regularly_occupied": true },
+      { "type": "reception", "count": 1, "area_each": { "value": 80, "unit": "sqm" }, "occupancy": 5, "is_regularly_occupied": true },
+      { "type": "kitchen", "count": 1, "area_each": { "value": 60, "unit": "sqm" }, "occupancy": 8, "is_regularly_occupied": true },
+      { "type": "toilet", "count": 10, "area_each": { "value": 10, "unit": "sqm" }, "occupancy": 0, "is_regularly_occupied": false }
+    ]
+  },
+  "expected": {
+    "certification_levels": {
+      "good": { "min_score": 45 }
+    }
+  }
+}

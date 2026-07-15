@@ -1,0 +1,22 @@
+{
+  "system": "LEED",
+  "version": "v4.1",
+  "rating_system": "BD+C",
+  "total_possible_points": 110,
+  "certification_levels": {
+    "certified": {"min_points": 40, "max_points": 49},
+    "silver": {"min_points": 50, "max_points": 59},
+    "gold": {"min_points": 60, "max_points": 79},
+    "platinum": {"min_points": 80, "max_points": 110}
+  },
+  "categories": [
+    {"name": "Location and Transportation", "abbreviation": "LT", "max_points": 16},
+    {"name": "Sustainable Sites", "abbreviation": "SS", "max_points": 10},
+    {"name": "Water Efficiency", "abbreviation": "WE", "max_points": 11},
+    {"name": "Energy and Atmosphere", "abbreviation": "EA", "max_points": 33},
+    {"name": "Materials and Resources", "abbreviation": "MR", "max_points": 13},
+    {"name": "Indoor Environmental Quality", "abbreviation": "IEQ", "max_points": 16},
+    {"name": "Innovation", "abbreviation": "IN", "max_points": 6},
+    {"name": "Regional Priority", "abbreviation": "RP", "max_points": 4}
+  ]
+}

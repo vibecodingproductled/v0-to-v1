@@ -1,0 +1,34 @@
+{
+  "name": "Office building targeting BREEAM Excellent",
+  "description": "Standard office with open plan, meeting rooms, and break areas. Should trigger Hea, Ene, Wat issues.",
+  "project": {
+    "project_name": "Test Office",
+    "building_type": "office",
+    "location": {
+      "country": "UK",
+      "city": "London"
+    },
+    "gross_floor_area": { "value": 8000, "unit": "sqm" },
+    "stories": 4,
+    "certification_target": {
+      "system": "BREEAM",
+      "scheme": "New Construction",
+      "version": "2023",
+      "level": "excellent"
+    },
+    "rooms": [
+      { "type": "open_office", "count": 4, "area_each": { "value": 300, "unit": "sqm" }, "occupancy": 40, "is_regularly_occupied": true },
+      { "type": "meeting_room", "count": 10, "area_each": { "value": 20, "unit": "sqm" }, "occupancy": 8, "is_regularly_occupied": true },
+      { "type": "break_room", "count": 2, "area_each": { "value": 30, "unit": "sqm" }, "occupancy": 10, "is_regularly_occupied": true },
+      { "type": "reception", "count": 1, "area_each": { "value": 100, "unit": "sqm" }, "occupancy": 5, "is_regularly_occupied": true },
+      { "type": "toilet", "count": 16, "area_each": { "value": 8, "unit": "sqm" }, "occupancy": 1, "is_regularly_occupied": false }
+    ]
+  },
+  "expected": {
+    "minimum_standard_count": 3,
+    "certification_levels": {
+      "excellent": { "min_score": 70 }
+    },
+    "room_types_with_requirements": ["office", "all"]
+  }
+}

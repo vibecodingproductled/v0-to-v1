@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Credit/Issue Schema",
+  "description": "Schema for certification credit or issue records. Used by both LEED and BREEAM knowledge bases.",
+  "type": "object",
+  "required": ["id", "system", "category", "requirements", "source_clause"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique credit identifier (e.g., LEED-EAc2, BREEAM-Hea01)"
+    },
+    "system": {
+      "type": "string",
+      "enum": ["LEED", "BREEAM"]
+    },
+    "rating_system": {
+      "type": "string",
+      "description": "LEED: BD+C, ID+C, O+M, etc."
+    },
+    "scheme": {
+      "type": "string",
+      "description": "BREEAM: New Construction, Refurbishment, In-Use, etc."
+    },
+    "version": {
+      "type": "string",
+      "description": "Manual version (e.g., v4.1, 2023)"
+    },
+    "category": {
+      "type": "string",
+      "description": "Credit category (e.g., Energy and Atmosphere, Health and Wellbeing)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["prerequisite", "credit"],
+      "description": "LEED: prerequisite (mandatory) or credit (optional)"
+    },
+    "issue": {
+      "type": "string",
+      "description": "BREEAM: issue title"
+    },
+    "title": {
+      "type": "string",
+      "description": "LEED: credit title"
+    },
+    "points_available": {
+      "type": ["integer", "null"],
+      "description": "LEED: maximum points. Null for prerequisites."
+    },
+    "credits_available": {
+      "type": "integer",
+      "description": "BREEAM: number of credits available"
+    },
+    "intent": {
+      "type": "string",
+      "description": "One-line description of what the credit aims to achieve"
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["metric", "threshold"],
+        "properties": {
+          "option": {
+            "type": "string",
+            "description": "Compliance path or option label"
+          },
+          "space_types": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Which room/space types this requirement applies to"
+          },
+          "metric": {
+            "type": "string",
+            "description": "What is being measured"
+          },
+          "threshold": {
+            "description": "Target value to achieve the credit"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit of measurement"
+          },
+          "standard": {
+            "type": "string",
+            "description": "Referenced standard (ASHRAE, BS EN, IES, etc.)"
+          },
+          "credit_level": {
+            "type": "string",
+            "description": "BREEAM: which credit level this threshold achieves"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Important context for the architect"
+          }
+        }
+      }
+    },
+    "assessment_stages": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "BREEAM: design, post_construction"
+    },
+    "minimum_standards": {
+      "type": "object",
+      "description": "BREEAM: minimum credit requirements per rating level"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Credits that must be achieved first"
+    },
+    "synergies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Credits that benefit from similar strategies"
+    },
+    "source_clause": {
+      "type": "string",
+      "description": "Exact reference in the certification manual"
+    }
+  }
+}

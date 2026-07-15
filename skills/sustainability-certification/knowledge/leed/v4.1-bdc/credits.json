@@ -1,0 +1,664 @@
+[
+  {
+    "id": "LEED-EAp1",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Energy and Atmosphere",
+    "type": "prerequisite",
+    "title": "Fundamental Commissioning and Verification",
+    "points_available": null,
+    "intent": "Support the design, construction, and eventual operation of a project that meets the owner's project requirements for energy, water, indoor environmental quality, and durability.",
+    "requirements": [
+      {
+        "option": "Commissioning process scope",
+        "space_types": ["all"],
+        "metric": "commissioning_authority",
+        "threshold": "independent_CxA_required",
+        "unit": null,
+        "standard": "ASHRAE Guideline 0-2005",
+        "notes": "CxA must have documented commissioning process experience on at least two buildings; cannot be responsible for project design or construction management."
+      },
+      {
+        "option": "Owner's Project Requirements",
+        "space_types": ["all"],
+        "metric": "OPR_document",
+        "threshold": "required",
+        "unit": null,
+        "standard": null,
+        "notes": "Develop OPR before the design phase; document energy, water, IEQ, and durability requirements."
+      },
+      {
+        "option": "Basis of Design",
+        "space_types": ["all"],
+        "metric": "BOD_document",
+        "threshold": "required",
+        "unit": null,
+        "standard": null,
+        "notes": "Develop BOD documenting how the design meets the OPR; update as design progresses."
+      },
+      {
+        "option": "Commissioning plan",
+        "space_types": ["all"],
+        "metric": "Cx_plan",
+        "threshold": "required",
+        "unit": null,
+        "standard": null,
+        "notes": "Develop and implement a commissioning plan covering mechanical, electrical, plumbing, and renewable energy systems. Include at minimum: HVAC&R, lighting controls, domestic hot water, and renewable energy systems."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": ["LEED-EAc2"],
+    "source_clause": "LEED v4.1 BD+C, EA Prerequisite: Fundamental Commissioning and Verification"
+  },
+  {
+    "id": "LEED-EAp2",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Energy and Atmosphere",
+    "type": "prerequisite",
+    "title": "Minimum Energy Performance",
+    "points_available": null,
+    "intent": "Reduce the environmental and economic harms of excessive energy use by establishing a minimum level of energy efficiency for the building and its systems.",
+    "requirements": [
+      {
+        "option": "Whole-building energy simulation (new construction)",
+        "space_types": ["all"],
+        "metric": "percent_cost_improvement_over_baseline",
+        "threshold": 5,
+        "unit": "percent",
+        "standard": "ASHRAE 90.1-2010",
+        "notes": "Demonstrate a 5% improvement in proposed building performance rating compared to the baseline building performance rating per ASHRAE 90.1-2010 Appendix G + cost budget method."
+      },
+      {
+        "option": "Prescriptive compliance (ASHRAE 50% Advanced Energy Design Guide)",
+        "space_types": ["all"],
+        "metric": "prescriptive_compliance",
+        "threshold": "comply_with_applicable_guide",
+        "unit": null,
+        "standard": "ASHRAE 50% Advanced Energy Design Guide",
+        "notes": "Alternative path: comply with the prescriptive measures in the applicable ASHRAE 50% Advanced Energy Design Guide for the building type."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": ["LEED-EAp1", "LEED-EAc2"],
+    "source_clause": "LEED v4.1 BD+C, EA Prerequisite: Minimum Energy Performance"
+  },
+  {
+    "id": "LEED-WEp1",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Water Efficiency",
+    "type": "prerequisite",
+    "title": "Outdoor Water Use Reduction",
+    "points_available": null,
+    "intent": "Reduce outdoor water consumption.",
+    "requirements": [
+      {
+        "option": "Reduce outdoor water use",
+        "space_types": ["all"],
+        "metric": "percent_reduction_from_baseline",
+        "threshold": 30,
+        "unit": "percent",
+        "standard": "EPA WaterSense",
+        "notes": "Reduce outdoor water use by 30% from the calculated baseline for the site's peak watering month. Baseline uses mid-summer with no precipitation. No-landscaping or xeriscape projects that eliminate potable irrigation qualify automatically."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": ["LEED-WEp2"],
+    "source_clause": "LEED v4.1 BD+C, WE Prerequisite: Outdoor Water Use Reduction"
+  },
+  {
+    "id": "LEED-WEp2",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Water Efficiency",
+    "type": "prerequisite",
+    "title": "Indoor Water Use Reduction",
+    "points_available": null,
+    "intent": "Reduce indoor water consumption.",
+    "requirements": [
+      {
+        "option": "Reduce aggregate indoor water use",
+        "space_types": ["all"],
+        "metric": "percent_reduction_from_baseline",
+        "threshold": 20,
+        "unit": "percent",
+        "standard": "EPAct 1992 / UPC / IPC baseline",
+        "notes": "Reduce aggregate water consumption by 20% from the baseline. Baseline fixture performance: water closets 1.6 gpf, urinals 1.0 gpf, public lavatory faucets 0.5 gpm, private lavatory faucets 2.2 gpm, showerheads 2.5 gpm, kitchen faucets 2.2 gpm, pre-rinse spray valves 1.6 gpm."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": ["LEED-WEc2"],
+    "source_clause": "LEED v4.1 BD+C, WE Prerequisite: Indoor Water Use Reduction"
+  },
+  {
+    "id": "LEED-IEQp1",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "prerequisite",
+    "title": "Minimum Indoor Air Quality Performance",
+    "points_available": null,
+    "intent": "Contribute to the comfort and well-being of building occupants by establishing minimum standards for indoor air quality.",
+    "requirements": [
+      {
+        "option": "Mechanically ventilated spaces",
+        "space_types": ["mechanically_ventilated"],
+        "metric": "ventilation_rate",
+        "threshold": "meet_sections_4_through_7",
+        "unit": null,
+        "standard": "ASHRAE 62.1-2010",
+        "notes": "Meet the minimum requirements of Sections 4 through 7 of ASHRAE 62.1-2010, Ventilation for Acceptable Indoor Air Quality. Ventilation Rate Procedure or IAQ Procedure may be used."
+      },
+      {
+        "option": "Naturally ventilated spaces",
+        "space_types": ["naturally_ventilated"],
+        "metric": "ventilation_rate",
+        "threshold": "meet_section_4",
+        "unit": null,
+        "standard": "ASHRAE 62.1-2010",
+        "notes": "Meet the requirements of ASHRAE 62.1-2010 Section 4 for naturally ventilated spaces. Use the natural ventilation procedure from CIBSE AM10 or Chapter 16 of the ASHRAE Handbook of Fundamentals."
+      },
+      {
+        "option": "ASHRAE 62.1-2010 exhaust rates",
+        "space_types": ["all"],
+        "metric": "exhaust_ventilation",
+        "threshold": "meet_Table_6-4",
+        "unit": null,
+        "standard": "ASHRAE 62.1-2010",
+        "notes": "Provide exhaust as required by ASHRAE 62.1-2010 Table 6-4 for applicable space types."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": ["LEED-IEQc5", "LEED-IEQc2"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Prerequisite: Minimum Indoor Air Quality Performance"
+  },
+  {
+    "id": "LEED-EAc2",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Energy and Atmosphere",
+    "type": "credit",
+    "title": "Optimize Energy Performance",
+    "points_available": 18,
+    "intent": "Achieve increasing levels of energy performance beyond the prerequisite standard to reduce environmental and economic harms associated with excessive energy use.",
+    "requirements": [
+      {
+        "option": "Whole-building energy simulation (new construction)",
+        "space_types": ["all"],
+        "metric": "percent_cost_improvement_over_baseline",
+        "threshold": [
+          {"percent_improvement": 6, "points": 1},
+          {"percent_improvement": 8, "points": 2},
+          {"percent_improvement": 10, "points": 3},
+          {"percent_improvement": 12, "points": 4},
+          {"percent_improvement": 14, "points": 5},
+          {"percent_improvement": 16, "points": 6},
+          {"percent_improvement": 18, "points": 7},
+          {"percent_improvement": 20, "points": 8},
+          {"percent_improvement": 22, "points": 9},
+          {"percent_improvement": 24, "points": 10},
+          {"percent_improvement": 26, "points": 11},
+          {"percent_improvement": 29, "points": 12},
+          {"percent_improvement": 32, "points": 13},
+          {"percent_improvement": 35, "points": 14},
+          {"percent_improvement": 38, "points": 15},
+          {"percent_improvement": 42, "points": 16},
+          {"percent_improvement": 46, "points": 17},
+          {"percent_improvement": 50, "points": 18}
+        ],
+        "unit": "percent improvement over ASHRAE 90.1-2010",
+        "standard": "ASHRAE 90.1-2010",
+        "notes": "Percentage improvement in proposed building performance rating compared to baseline per ASHRAE 90.1-2010 Appendix G. Major renovation thresholds are 3% lower at each tier."
+      }
+    ],
+    "prerequisites": ["LEED-EAp1", "LEED-EAp2"],
+    "synergies": ["LEED-IEQc6", "LEED-IEQc7"],
+    "source_clause": "LEED v4.1 BD+C, EA Credit: Optimize Energy Performance"
+  },
+  {
+    "id": "LEED-WEc2",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Water Efficiency",
+    "type": "credit",
+    "title": "Indoor Water Use Reduction",
+    "points_available": 6,
+    "intent": "Reduce indoor water consumption.",
+    "requirements": [
+      {
+        "option": "Reduce aggregate indoor water use",
+        "space_types": ["all"],
+        "metric": "percent_reduction_from_baseline",
+        "threshold": [
+          {"percent_reduction": 25, "points": 1},
+          {"percent_reduction": 30, "points": 2},
+          {"percent_reduction": 35, "points": 3},
+          {"percent_reduction": 40, "points": 4},
+          {"percent_reduction": 45, "points": 5},
+          {"percent_reduction": 50, "points": 6}
+        ],
+        "unit": "percent",
+        "standard": "EPAct 1992 baseline",
+        "notes": "Percentage reduction from the baseline calculated per EPAct 1992 fixture performance rates."
+      },
+      {
+        "option": "Fixture baselines (EPAct 1992)",
+        "space_types": ["all"],
+        "metric": "fixture_baseline_rates",
+        "threshold": {
+          "toilets_gpf": 1.6,
+          "urinals_gpf": 1.0,
+          "public_lavatory_faucets_gpm": 0.5,
+          "private_lavatory_faucets_gpm": 2.2,
+          "kitchen_faucets_gpm": 2.2,
+          "showerheads_gpm": 2.5,
+          "pre_rinse_spray_valves_gpm": 1.6
+        },
+        "unit": "gpf or gpm",
+        "standard": "EPAct 1992",
+        "notes": "EPAct 1992 baseline rates. LEED v4.1 design case targets: toilets 1.28 gpf, urinals 0.5 gpf, lavatory faucets 0.5 gpm (public) or 1.5 gpm (private), kitchen faucets 2.2 gpm, showerheads 2.0 gpm."
+      },
+      {
+        "option": "Design case fixture targets",
+        "space_types": ["all"],
+        "metric": "design_case_fixture_rates",
+        "threshold": {
+          "toilets_gpf": 1.28,
+          "urinals_gpf": 0.5,
+          "lavatory_faucets_gpm": 0.5,
+          "kitchen_faucets_gpm": 2.2,
+          "showerheads_gpm": 2.0
+        },
+        "unit": "gpf or gpm",
+        "standard": "EPA WaterSense",
+        "notes": "Recommended efficient fixture rates to achieve indoor water use reduction. Using these rates in the design case helps meet the prerequisite and earn credit points."
+      }
+    ],
+    "prerequisites": ["LEED-WEp2"],
+    "synergies": ["LEED-WEp1"],
+    "source_clause": "LEED v4.1 BD+C, WE Credit: Indoor Water Use Reduction"
+  },
+  {
+    "id": "LEED-IEQc5",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "credit",
+    "title": "Thermal Comfort",
+    "points_available": 1,
+    "intent": "Promote occupants' productivity, comfort, and well-being by providing quality thermal comfort.",
+    "requirements": [
+      {
+        "option": "ASHRAE 55 compliance",
+        "space_types": ["regularly_occupied"],
+        "metric": "PMV",
+        "threshold": {
+          "min": -0.5,
+          "max": 0.5
+        },
+        "unit": "PMV index",
+        "standard": "ASHRAE 55-2010",
+        "notes": "Design HVAC systems and the building envelope to meet ASHRAE 55-2010 requirements. PMV (Predicted Mean Vote) must be between -0.5 and +0.5 in regularly occupied spaces. Also meet PPD (Predicted Percentage Dissatisfied) < 10%."
+      },
+      {
+        "option": "Individual thermal comfort controls",
+        "space_types": ["regularly_occupied"],
+        "metric": "occupant_controls",
+        "threshold": "provide_individual_controls_for_50%_of_individual_occupant_spaces",
+        "unit": null,
+        "standard": "ASHRAE 55-2010",
+        "notes": "Provide individual thermal comfort controls for at least 50% of individual occupant spaces. Group thermal comfort controls for all shared multi-occupant spaces."
+      }
+    ],
+    "prerequisites": ["LEED-IEQp1"],
+    "synergies": ["LEED-EAc2"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Credit: Thermal Comfort"
+  },
+  {
+    "id": "LEED-IEQc6",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "credit",
+    "title": "Interior Lighting",
+    "points_available": 2,
+    "intent": "Promote occupants' productivity, comfort, and well-being by providing high-quality lighting.",
+    "requirements": [
+      {
+        "option": "Option 1: Lighting control (1 point)",
+        "space_types": ["regularly_occupied"],
+        "metric": "individual_lighting_controls",
+        "threshold": 90,
+        "unit": "percent of individual occupants with personal controls",
+        "standard": null,
+        "notes": "For individual occupant spaces: provide individual lighting controls that enable occupants to adjust lighting to suit their individual tasks and preferences, for at least 90% of individual occupant spaces. Controls must allow at minimum on/off and light level adjustment."
+      },
+      {
+        "option": "Option 1: Shared space multi-zone controls (1 point)",
+        "space_types": ["shared_multi_occupant"],
+        "metric": "multizone_controls",
+        "threshold": "all_shared_multi_occupant_spaces",
+        "unit": null,
+        "standard": null,
+        "notes": "For shared multi-occupant spaces: provide multi-zone controls enabling occupants to adjust lighting to meet group needs and preferences. Lighting for any shared space must have at least three lighting levels (on, mid-level, off)."
+      },
+      {
+        "option": "Option 2: Lighting quality (1 point)",
+        "space_types": ["regularly_occupied"],
+        "metric": "lighting_quality_strategies",
+        "threshold": "meet_4_of_8_strategies",
+        "unit": null,
+        "standard": "IES Lighting Handbook 10th Edition",
+        "notes": "Choose at least four of eight strategies: luminance ratios, direct-only overhead fixtures with luminaire luminance limits, high CRI (>80) for 75% of total connected load, color rendering for specific applications, fixture shielding (>45 degree cutoff), ceiling-surface reflectance, furniture-surface reflectance, electric lighting for occupied spaces only."
+      }
+    ],
+    "prerequisites": ["LEED-IEQp1"],
+    "synergies": ["LEED-IEQc7", "LEED-EAc2"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Credit: Interior Lighting"
+  },
+  {
+    "id": "LEED-IEQc7",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "credit",
+    "title": "Daylight",
+    "points_available": 3,
+    "intent": "Connect building occupants with the outdoors, reinforce circadian rhythms, and reduce the use of electrical lighting by introducing daylight into the space.",
+    "requirements": [
+      {
+        "option": "Option 1: Simulation - Spatial Daylight Autonomy",
+        "space_types": ["regularly_occupied"],
+        "metric": "sDA_300_50",
+        "threshold": [
+          {"sDA_percent": 55, "points": 2},
+          {"sDA_percent": 75, "points": 3}
+        ],
+        "unit": "percent of regularly occupied floor area",
+        "standard": "IES LM-83-12",
+        "notes": "Demonstrate through annual computer simulations that sDA300/50% (spatial Daylight Autonomy: 300 lux for at least 50% of annual occupied hours) is achieved in the specified percentage of regularly occupied floor area. Additionally, Annual Sunlight Exposure (ASE1000,250h) must not exceed 10% of regularly occupied floor area; blinds may be modeled to demonstrate ASE compliance."
+      },
+      {
+        "option": "Option 1: ASE glare control",
+        "space_types": ["regularly_occupied"],
+        "metric": "ASE_1000_250",
+        "threshold": {
+          "max_percent": 10
+        },
+        "unit": "percent of regularly occupied floor area",
+        "standard": "IES LM-83-12",
+        "notes": "Annual Sunlight Exposure (1000 lux for more than 250 occupied hours per year) must not exceed 10% of regularly occupied floor area. Spaces failing ASE must demonstrate adequate glare control (blinds, automated shading, etc.)."
+      },
+      {
+        "option": "Option 2: Illuminance calculations",
+        "space_types": ["regularly_occupied"],
+        "metric": "illuminance_levels",
+        "threshold": {
+          "min_lux": 300,
+          "max_lux": 3000,
+          "floor_area_percent": 75
+        },
+        "unit": "lux",
+        "standard": null,
+        "notes": "Demonstrate through illuminance calculations that 300 lux minimum is achieved for at least 75% of regularly occupied floor area at 9 AM and 3 PM on equinox, with a maximum of 3000 lux (to manage glare)."
+      },
+      {
+        "option": "Option 3: Measurement",
+        "space_types": ["regularly_occupied"],
+        "metric": "measured_illuminance",
+        "threshold": {
+          "min_lux": 300,
+          "max_lux": 3000,
+          "floor_area_percent": 75
+        },
+        "unit": "lux",
+        "standard": null,
+        "notes": "Demonstrate through measurement that 300 lux minimum is achieved for 75% of regularly occupied floor area. Measurements taken on a 10-foot grid at desk height (30 inches / 760 mm) between 9 AM and 3 PM."
+      }
+    ],
+    "prerequisites": ["LEED-IEQp1"],
+    "synergies": ["LEED-IEQc6", "LEED-IEQc8", "LEED-EAc2"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Credit: Daylight"
+  },
+  {
+    "id": "LEED-IEQc8",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "credit",
+    "title": "Quality Views",
+    "points_available": 1,
+    "intent": "Give building occupants a connection to the natural outdoor environment by providing quality views.",
+    "requirements": [
+      {
+        "option": "Direct line of sight to vision glazing",
+        "space_types": ["regularly_occupied"],
+        "metric": "floor_area_with_direct_line_of_sight",
+        "threshold": 75,
+        "unit": "percent of regularly occupied floor area",
+        "standard": null,
+        "notes": "Achieve a direct line of sight to the outdoors via vision glazing for 75% of all regularly occupied floor area. View glazing in the 42-inch (1,067 mm) to 90-inch (2,286 mm) zone above finished floor qualifies. Views into interior atriums may be counted for up to 30% of the required area. Views must include at least two of the following: (1) flora, fauna, or sky; (2) movement; (3) objects at least 25 feet (7.5 m) from the exterior of the glazing."
+      }
+    ],
+    "prerequisites": ["LEED-IEQp1"],
+    "synergies": ["LEED-IEQc7"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Credit: Quality Views"
+  },
+  {
+    "id": "LEED-IEQc9",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "credit",
+    "title": "Acoustic Performance",
+    "points_available": 1,
+    "intent": "Provide workspaces and classrooms that promote occupants' well-being, productivity, and communications through effective acoustic design.",
+    "requirements": [
+      {
+        "option": "Background noise levels",
+        "space_types": ["regularly_occupied"],
+        "metric": "HVAC_background_noise",
+        "threshold": "meet_2011_ASHRAE_Handbook_criteria",
+        "unit": "dB (NC or RC criteria)",
+        "standard": "2011 ASHRAE Handbook, HVAC Applications, Chapter 48",
+        "notes": "Achieve maximum background noise levels from HVAC systems per 2011 ASHRAE Handbook Chapter 48 design criteria. Typical targets: open offices NC/RC 40, private offices NC/RC 35, conference rooms NC/RC 30, classrooms NC/RC 35."
+      },
+      {
+        "option": "Sound isolation (STC ratings)",
+        "space_types": ["regularly_occupied"],
+        "metric": "partition_STC_rating",
+        "threshold": "meet_composite_STC_per_adjacency",
+        "unit": "STC",
+        "standard": "2011 ASHRAE Handbook / ANSI S12.60",
+        "notes": "Achieve minimum composite Sound Transmission Class (STC) ratings for wall, floor-ceiling, and door assemblies between spaces. Typical targets: conference room to corridor STC 50, office to office STC 45, classroom to corridor STC 50. Schools must also meet ANSI S12.60."
+      },
+      {
+        "option": "Reverberation time (optional for schools)",
+        "space_types": ["classrooms", "learning_spaces"],
+        "metric": "reverberation_time",
+        "threshold": {
+          "max_seconds": 0.6,
+          "volume_threshold_ft3": 10000
+        },
+        "unit": "seconds (T60)",
+        "standard": "ANSI S12.60-2010",
+        "notes": "For classrooms with volume up to 10,000 cubic feet, meet a maximum reverberation time (T60) of 0.6 seconds. For classrooms with volume from 10,000 to 20,000 cubic feet, maximum T60 of 0.7 seconds."
+      }
+    ],
+    "prerequisites": ["LEED-IEQp1"],
+    "synergies": ["LEED-IEQc5"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Credit: Acoustic Performance"
+  },
+  {
+    "id": "LEED-IEQc2",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Indoor Environmental Quality",
+    "type": "credit",
+    "title": "Low-Emitting Materials",
+    "points_available": 3,
+    "intent": "Reduce concentrations of chemical contaminants that can damage air quality, human health, productivity, and the environment.",
+    "requirements": [
+      {
+        "option": "Budget calculation approach (all product categories)",
+        "space_types": ["all"],
+        "metric": "compliant_product_percentage",
+        "threshold": [
+          {"percent_compliant": 50, "category_count": 2, "points": 1},
+          {"percent_compliant": 50, "category_count": 3, "points": 2},
+          {"percent_compliant": 50, "category_count": 4, "points": 3}
+        ],
+        "unit": "percent of products meeting VOC limits per category",
+        "standard": "Multiple (see notes)",
+        "notes": "Use the budget calculation method. Achieve threshold percentage of compliant products in the required number of categories: (1) interior paints and coatings, (2) adhesives and sealants, (3) flooring, (4) composite wood, (5) ceilings/walls/thermal/acoustic insulation, (6) furniture, (7) exterior applied products."
+      },
+      {
+        "option": "Adhesives and sealants",
+        "space_types": ["all"],
+        "metric": "VOC_content",
+        "threshold": "meet_SCAQMD_Rule_1168_limits",
+        "unit": "g/L",
+        "standard": "SCAQMD Rule 1168",
+        "notes": "Adhesives, sealants, and sealant primers applied on site must meet the VOC content limits of South Coast Air Quality Management District (SCAQMD) Rule 1168."
+      },
+      {
+        "option": "Paints and coatings",
+        "space_types": ["all"],
+        "metric": "VOC_content",
+        "threshold": "meet_GS-11_or_SCAQMD_Rule_1113",
+        "unit": "g/L",
+        "standard": "Green Seal GS-11 / SCAQMD Rule 1113",
+        "notes": "Paints and coatings applied on site must meet VOC limits per Green Seal GS-11 (flat: 50 g/L, non-flat: 100 g/L) or SCAQMD Rule 1113."
+      },
+      {
+        "option": "Flooring",
+        "space_types": ["all"],
+        "metric": "VOC_emissions",
+        "threshold": "FloorScore_certified_or_equivalent",
+        "unit": null,
+        "standard": "FloorScore (SCS-EC10.3) / CDPH Standard Method v1.1",
+        "notes": "Flooring products must be FloorScore certified or meet CDPH Standard Method v1.1 (California Section 01350) emission limits."
+      },
+      {
+        "option": "Composite wood and agrifiber",
+        "space_types": ["all"],
+        "metric": "formaldehyde_content",
+        "threshold": "no_added_urea_formaldehyde",
+        "unit": null,
+        "standard": "CARB ATCM for formaldehyde / EPA TSCA Title VI",
+        "notes": "Composite wood and agrifiber products must contain no added urea-formaldehyde resins. Laminating adhesives for field and shop applications must contain no added urea-formaldehyde resins."
+      }
+    ],
+    "prerequisites": ["LEED-IEQp1"],
+    "synergies": ["LEED-IEQc5"],
+    "source_clause": "LEED v4.1 BD+C, IEQ Credit: Low-Emitting Materials"
+  },
+  {
+    "id": "LEED-SSc5",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Sustainable Sites",
+    "type": "credit",
+    "title": "Heat Island Reduction",
+    "points_available": 2,
+    "intent": "Minimize effects on microclimates and human and wildlife habitats by reducing heat islands.",
+    "requirements": [
+      {
+        "option": "Option 1: Non-roof and roof combined",
+        "space_types": ["site"],
+        "metric": "weighted_SRI_area",
+        "threshold": "meet_combined_equation",
+        "unit": null,
+        "standard": "ASTM E1980 / ENERGY STAR",
+        "notes": "Use any combination of non-roof strategies (high-reflectance paving SRI >= 29, open-grid pavement, shade from structures/trees/vegetated pergolas within 10 years, underground parking) and roof strategies to meet the combined equation: (non-roof compliant area / total non-roof hardscape) + (high-SRI roof area / total roof area) >= 1."
+      },
+      {
+        "option": "Roof: Low-slope (1 point)",
+        "space_types": ["roof"],
+        "metric": "SRI",
+        "threshold": {
+          "initial_SRI_min": 82,
+          "three_year_aged_SRI_min": 64,
+          "area_percent": 75
+        },
+        "unit": "Solar Reflectance Index",
+        "standard": "ASTM E1980 / CRRC rated",
+        "notes": "For low-slope roof (slope <= 2:12): use roofing materials with an initial SRI of at least 82 (or 3-year aged SRI of at least 64) for a minimum of 75% of the roof surface."
+      },
+      {
+        "option": "Roof: Steep-slope (1 point)",
+        "space_types": ["roof"],
+        "metric": "SRI",
+        "threshold": {
+          "initial_SRI_min": 39,
+          "three_year_aged_SRI_min": 32,
+          "area_percent": 75
+        },
+        "unit": "Solar Reflectance Index",
+        "standard": "ASTM E1980 / CRRC rated",
+        "notes": "For steep-slope roof (slope > 2:12): use roofing materials with an initial SRI of at least 39 (or 3-year aged SRI of at least 32) for a minimum of 75% of the roof surface."
+      },
+      {
+        "option": "Vegetated roof / green roof",
+        "space_types": ["roof"],
+        "metric": "vegetated_roof_area",
+        "threshold": 75,
+        "unit": "percent of total roof area",
+        "standard": null,
+        "notes": "Install a vegetated (green) roof for at least 75% of the roof area. A combination of high-SRI roofing and vegetated roof can be used with the weighted formula: (SRI roof area / 0.75) + (vegetated roof area / 0.75) >= total roof area."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": ["LEED-EAc2"],
+    "source_clause": "LEED v4.1 BD+C, SS Credit: Heat Island Reduction"
+  },
+  {
+    "id": "LEED-MRc2",
+    "system": "LEED",
+    "rating_system": "BD+C",
+    "version": "v4.1",
+    "category": "Materials and Resources",
+    "type": "credit",
+    "title": "Building Product Disclosure and Optimization - Environmental Product Declarations",
+    "points_available": 2,
+    "intent": "Encourage the use of products and materials for which life-cycle information is available and that have environmentally, economically, and socially preferable life-cycle impacts.",
+    "requirements": [
+      {
+        "option": "Option 1: Environmental Product Declaration (1 point)",
+        "space_types": ["all"],
+        "metric": "products_with_EPDs",
+        "threshold": 20,
+        "unit": "permanently installed products",
+        "standard": "ISO 14025 / EN 15804 / ISO 21930",
+        "notes": "Use at least 20 different permanently installed products sourced from at least five different manufacturers that have: (a) Product-specific Type III EPD conforming to ISO 14025 and EN 15804 or ISO 21930, OR (b) USGBC-approved program EPDs. Industry-wide (generic) EPDs count as one-half product; product-specific EPDs count as one whole product."
+      },
+      {
+        "option": "Option 2: Multi-attribute optimization (1 point)",
+        "space_types": ["all"],
+        "metric": "products_with_optimized_EPDs",
+        "threshold": "50%_of_EPD_products_demonstrate_impact_reduction",
+        "unit": null,
+        "standard": "ISO 14044",
+        "notes": "Of the products with EPDs, demonstrate that at least 50% (by cost) show impact reduction below industry average in at least three of six impact categories: global warming potential, ozone depletion, acidification, eutrophication, photochemical ozone creation, and depletion of abiotic resources."
+      }
+    ],
+    "prerequisites": [],
+    "synergies": [],
+    "source_clause": "LEED v4.1 BD+C, MR Credit: Building Product Disclosure and Optimization - Environmental Product Declarations"
+  }
+]
