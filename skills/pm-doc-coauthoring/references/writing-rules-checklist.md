@@ -1,9 +1,9 @@
 # Writing Rules Checklist
 
-Run this checklist before publishing any document.
+Run this checklist before publishing any document. It is the run-time form of the Hard rules in `SKILL.md`; that section is the source of truth. If the two ever disagree, `SKILL.md` wins and this file needs updating.
 
 ## Length
-- [ ] Under 750 words (3 min read)
+- [ ] Within the word budget agreed in Stage 1 (defaults: 750 for strategy/decision/proposal, 1,000 for experiment specs, 1,500 for technical specs)
 - [ ] If over: cut redundancy first, then compress bullets, then drop weakest section
 
 ## Voice

@@ -2,13 +2,17 @@
 name: jtbd-discovery
 description: Design discovery research and synthesize it into Jobs to Be Done. Use when planning an interview round, writing an interview script, synthesizing findings across interviews, separating symptoms from root causes, or framing problems as testable hypotheses. Do NOT use for processing a single interview's notes into a writeup; that is discovery-interview.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: Daniel Gameiro
 ---
 
 # JTBD Discovery
 
-A structured approach to running discovery interviews and synthesizing findings into actionable Jobs to Be Done. Built from experience running 50+ discovery interviews for an AI product.
+A structured approach to running discovery interviews and synthesizing findings into actionable Jobs to Be Done.
+
+## Where this comes from
+
+Years of product management practice on AI products for the built environment: multi-round discovery programs with architects, developers, and urban planners, run across segments and synthesized into testable bets. Method influences, named per this repo's sourcing principle: SVPG-style product discovery (Marty Cagan), Jobs to Be Done and the Four Forces (Bob Moesta), and hypothesis-driven growth experimentation with pre-registered success and kill criteria. No proprietary data or company IP; the worked example in `references/example-synthesis.md` uses real shapes with invented content.
 
 ## When to use
 
@@ -95,6 +99,8 @@ Assign confidence based on independent sources (not mentions, sources):
 | MEDIUM | 2-5 | Worth testing. Not yet proven. |
 | LOW | 1 | One person's pain. Might be an outlier. |
 
+Source counts accumulate across interview rounds and segments. A single 8-12 interview round rarely produces SUPER HIGH on its own, and should not: reaching the top tier is evidence that a struggle survived multiple rounds, not that one round was big enough.
+
 ### From root causes to hypotheses
 
 Each trunk-branch pair becomes a hypothesis:
@@ -102,6 +108,12 @@ Each trunk-branch pair becomes a hypothesis:
 > "We believe [target users] struggle to [trunk] because [branch]. If we [proposed solution], we expect [measurable outcome] to improve by [threshold]. We'll know we're wrong if [falsification criteria]."
 
 This is where discovery ends and experimentation begins: each hypothesis gets a smallest-possible test with a pre-registered success threshold and a kill criterion.
+
+## References
+
+- [references/trunk-branch-template.md](references/trunk-branch-template.md): Blank synthesis template
+- [references/example-synthesis.md](references/example-synthesis.md): A finished synthesis, shapes real and content invented
+- [evals/evals.md](evals/evals.md): Pass/fail checks for this skill's output
 
 ## Anti-patterns
 

@@ -8,13 +8,17 @@ description: |
   interview", or wants "interview feedback". Do NOT use for designing interview scripts or
   synthesizing findings across many interviews; that is jtbd-discovery.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: Daniel Gameiro
 ---
 
 # Discovery Interview
 
-A bias-aware system for running and processing discovery interviews. Built from experience running 60+ interviews for an AI product in a high-stakes domain.
+A bias-aware system for running and processing discovery interviews.
+
+## Where this comes from
+
+Years of running and scoring discovery interviews for AI products in a high-stakes domain (the built environment), where acquiescence bias is expensive: practitioners are polite, prototypes are seductive, and a wrong "validated" signal costs a quarter. The scorecard, the bias protocol, and the anti-pattern table were all earned as corrections to real interviewing mistakes, then genericized. Method influences: SVPG-style product discovery (Cagan) and the growth-experimentation discipline of pre-registered predictions and kill signals. No proprietary data or company IP; `references/example-writeup.md` shows the output shape with invented content.
 
 This skill is the operational counterpart to recognizing your own bias. Knowing you are biased is step one. This skill is step two: a systematic protocol that counteracts bias before, during, and after every interview, with persistent tracking so you can measure whether you are actually improving.
 
@@ -279,4 +283,6 @@ This protocol is the core of the skill. It runs before, during, and after every 
 - [references/writeup-template.md](references/writeup-template.md): Structured writeup template
 - [references/framework-update-template.md](references/framework-update-template.md): Problem framework template for evidence propagation
 - [references/feedback-tracker-template.md](references/feedback-tracker-template.md): Persistent interviewer scorecard tracker
+- [references/example-writeup.md](references/example-writeup.md): A finished writeup, shapes real and content invented
+- [evals/evals.md](evals/evals.md): Pass/fail checks for the writeup and reflection
 - `jtbd-discovery` skill (in this repo): Trunk-branch problem framing and synthesis methodology

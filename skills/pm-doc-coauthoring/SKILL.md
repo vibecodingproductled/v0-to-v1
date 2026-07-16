@@ -2,7 +2,7 @@
 name: pm-doc-coauthoring
 description: Write strategy docs, experiment specs, proposals, and decision docs with AI that sound like a human wrote them. Use when drafting any substantial document. 3-stage workflow (Context Gathering, Refinement, Reader Testing) with quality rules that prevent AI-sounding output.
 metadata:
-  version: 1.0.0
+  version: 2.0.0
   author: Daniel Gameiro
 ---
 
@@ -10,7 +10,13 @@ metadata:
 
 A structured workflow for writing strategy documents, experiment specs, proposals, and decision docs with AI assistance. The goal is documents that read as if a thoughtful human wrote them, not an LLM.
 
+## Where this comes from
+
+Years of writing and reviewing PM documents for AI products: multi-year platform vision docs, experiment specs for a product-led growth motion, and decision docs that had to survive security and legal review. The hard rules below are the compressed version of what those reviews kept catching. Method influences: SVPG-style narrative clarity (Cagan) and growth experimentation's insistence that a spec states how it can be wrong. `references/example-strategy-doc.md` shows the target output shape with invented content.
+
 ## Hard rules
+
+This section is the single source of truth for these rules. The run-time checklist in `references/writing-rules-checklist.md` is a compressed pointer to it, and the writing-style examples in the `ai-harness-design` skill are illustrations, not a second definition.
 
 These are non-negotiable. Every document produced with this skill must follow them.
 
@@ -87,6 +93,12 @@ Test the document with a fresh context (a new AI conversation or a colleague who
 | Decision doc | The decision and its rationale | Trade-offs and what you're giving up |
 | Proposal | The ask and the impact | Why this, why now, why not alternatives |
 | Technical spec | The problem and the constraints | The approach and its boundaries |
+
+## References
+
+- [references/writing-rules-checklist.md](references/writing-rules-checklist.md): Run-time checklist form of the hard rules
+- [references/example-strategy-doc.md](references/example-strategy-doc.md): A complete strategy doc that passes every rule, content invented
+- [evals/evals.md](evals/evals.md): Pass/fail checks, three mechanical and three fresh-context
 
 ## Anti-patterns
 
