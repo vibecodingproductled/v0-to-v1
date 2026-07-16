@@ -7,7 +7,7 @@ description: >-
   skills, hooks, knowledge contexts, memory, sub-agents, personas, tool/MCP integration)
   and the single-source-of-truth principle that keeps it from rotting.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: Daniel Gameiro
 ---
 
@@ -158,7 +158,7 @@ Let the system tell you what to change instead of guessing. With the tracking ho
 
 Rules are not instructions for a specific task. They are invariants that should hold regardless of what Claude is doing. Think of them as guardrails, not directions.
 
-Good rule: "Never use em dashes in any output. Use commas, periods, colons, or semicolons instead." This is an invariant. It should always be true.
+Good rule: "Never use em dashes in any output. Use commas, periods, colons, or semicolons instead." This is an invariant. It should always be true. (Used here as an illustration; the normative writing rules for this repo's own skills live in `pm-doc-coauthoring`, one home per fact.)
 
 Bad rule: "When writing emails, use the CRAFT method." This is methodology for a specific task type. It belongs in a skill.
 
@@ -208,6 +208,12 @@ See `references/personas-guide.md` for the full pattern and a persona template.
 A harness wired to your actual docs, chat, and analytics (via MCP servers) is where the work happens. The architecture rule carries over: each tool is a system of record that owns a class of fact, and the harness points at it rather than copying from it. A knowledge context links to the canonical doc by ID; it does not paste it. Wire the tools you already live in, least-privilege, and never send private context to an external service.
 
 See `references/mcp-integration.md`.
+
+## Workflow discipline: how to drive the harness
+
+Structure is half the harness; the other half is how you run it. The convergent practitioner loop is research, plan, execute, review, ship, with the human in the review seat at every gate. Plan mode is the default for anything non-trivial: let the agent explore and propose before it touches anything. Checkpoint often so any step is cheap to revert. Give every artifact a verification mechanism (a rubric, a checklist, an eval) because an agent that can test its own work is reliably better than one that cannot. For high-stakes documents, use a doer-verifier or panel pattern: separate reviewer agents (or persona-grounded reviewers) critique the draft blind to each other.
+
+See `references/workflow-discipline.md` for the full patterns and when each is overkill.
 
 ## See it assembled
 

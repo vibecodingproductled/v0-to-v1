@@ -22,11 +22,25 @@ If your team keeps shared context in an external system (a team wiki page, a sha
 ## Which tools are worth wiring first
 
 Start with the tools you already live in. For most PMs that is:
-1. **Your docs/wiki tool**, so Claude can read the canonical strategy and writeups and publish back to them.
-2. **Your chat tool**, so it can draft and read messages in your voice.
-3. **Your analytics tool**, so it can answer usage questions with live data instead of your memory.
+1. **Your tracker** (tickets, sprints), so specs turn into tickets without copy-paste.
+2. **Your docs/wiki tool**, so Claude can read the canonical strategy and writeups and publish back to them.
+3. **Your customer-intelligence or analytics source**, so evidence questions get live answers instead of your memory.
 
 Add integrations when a real, recurring task needs them, not speculatively. An unused MCP server is the God Hook of the tool layer: setup cost and surface area for no return.
+
+## The ceiling: 3-5 servers, and why it is a real limit
+
+Every connected MCP server injects all of its tool definitions into context at session start, before your first message. This is paid every session whether you use the tools or not, and measured setups have lost most of their context window to tool definitions alone before any conversation happened. Practitioner consensus converges on 3-5 servers and roughly 10-15 active tools as the working ceiling.
+
+Two tests before adding a server:
+- **The 2x test.** Would this integration make a recurring workflow twice as good, or just slightly more convenient? Convenience does not pay its context rent.
+- **The staleness test.** Does this data change faster than you could reasonably export it by hand? Stable data (templates, past docs, reference material) belongs in files; MCP is for what moves.
+
+Watch your context meter and prune the server you use least whenever output quality drifts. Context bloat degrades results before it announces itself.
+
+## Start read-only
+
+Grant write access only after the integration has produced a month of output you would have shipped anyway. Until then, let the skill produce structured output you paste into the tool yourself: the pasting is cheap, and it is your review gate. Note that many tools cannot scope a token per project, so a write token is often a write token to everything your account touches. That asymmetry is why read-only is the default and write is the earned exception.
 
 ## Safety: least privilege, and do not exfiltrate
 
