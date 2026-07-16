@@ -1,11 +1,28 @@
 # Changelog
 
-Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/) via git tags and `.claude-plugin/plugin.json`.
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/) via `.claude-plugin/plugin.json` and git tags (tags exist from v0.3.0 onward).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-16
+
 ### Removed
 - `sustainability-certification` moved to its own repository: [aec-sustainability](https://github.com/vibecodingproductled/aec-sustainability). This repo is now purely PM methodology skills; the domain-specific agents (and their Python scoring engines) live where they can grow independently.
+
+### Added
+- `product-shaping` skill: frame adversarially, research in parallel, converge to a two-minute spec with pre-registered kill criteria. Ships a spec template with a worked example.
+- `ideal-user-persona` skill: quantitative, behavior-first identification of the single high-motivation user profile for a PLG motion, with an explicit not-serving list. Ships an analysis worksheet with a worked example.
+- **Evidence layer across all skills**: a "Where this comes from" provenance section per skill (years of PM practice on AI products for the built environment, genericized; declared influences: SVPG product discovery and growth experimentation), worked example artifacts with invented content (`example-synthesis.md`, `example-writeup.md`, `example-strategy-doc.md`), and pass/fail evals in each flagship skill's `evals/` folder.
+- `ai-harness-design`: new `references/workflow-discipline.md` (plan-mode gating, checkpointing, doer-verifier and panel review, chained workflows, simplest-thing-first) and a workflow-discipline section in the skill body.
+- README: sourcing statement, positioning relative to Anthropic's official product-management plugin, and a "Does it work? Test it" section with measurable adoption criteria and decision thresholds.
+
+### Changed
+- **Breaking:** `pm-doc-coauthoring` bumped to 2.0.0, closing the loop on the 0.3.0 rename (a rename is a breaking change and the skill version now says so). Its hard-rules section is declared the single source of truth for writing rules; the run-time checklist and the examples in `ai-harness-design` now point to it instead of redefining it.
+- Removed interview-count claims from skill provenance; grounding is stated as years of practice and named method influences rather than a number.
+- `jtbd-discovery` confidence table: clarified that source counts accumulate across rounds and segments, resolving the tension with the 8-12-interviews-per-round sampling guidance.
+- `ai-harness-design/references/mcp-integration.md` deepened: the 3-5 server ceiling and its context-cost rationale, the 2x test, the staleness test, and the read-only-first pattern.
+- SECURITY.md scope table corrected and extended: `discovery-interview`'s ability to publish to a configured wiki is now explicitly marked as network-capable instead of being contradicted by a blanket "no network calls" claim. New skills added to the table.
+- README curation promise made honest: 8 curated skills held as a hard line; cadence claims replaced with a pointer to the changelog.
 
 ## [0.3.0] - 2026-07-16
 
@@ -26,7 +43,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - README: CI/license badges, requirements, compatibility table, and a worked example.
 
 ### Fixed
-- `ai-harness-design`'s description was invalid YAML (an unquoted `: ` inside the scalar), which a strict frontmatter parser rejects — the exact silent load failure this repo's lint exists to catch. Converted to a block scalar, and `lint-skills.sh` now runs a real YAML parse on every skill's frontmatter (with a heuristic fallback when PyYAML is absent).
+- `ai-harness-design`'s description was invalid YAML (an unquoted `: ` inside the scalar), which a strict frontmatter parser rejects: the exact silent load failure this repo's lint exists to catch. Converted to a block scalar, and `lint-skills.sh` now runs a real YAML parse on every skill's frontmatter (with a heuristic fallback when PyYAML is absent).
 - `sustainability-certification` (shipped earlier but undocumented at the repo level) is now listed in the README skills table under a new Domain section and covered in `SECURITY.md`'s scope table.
 
 ## [0.2.0] - 2026-07-16
