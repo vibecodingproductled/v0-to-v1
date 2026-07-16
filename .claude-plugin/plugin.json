@@ -1,6 +1,6 @@
 {
   "name": "v0-to-v1",
   "description": "PM skills for building AI products from scratch: discovery interviews, JTBD synthesis, doc co-authoring, and harness design/maintenance.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": { "name": "Daniel Gameiro" }
 }

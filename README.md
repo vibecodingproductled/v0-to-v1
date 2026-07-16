@@ -21,7 +21,7 @@ Actionable PM frameworks for taking an AI product from nothing to something. Eac
 
 | Skill | What it does |
 |-------|-------------|
-| `doc-coauthoring` | Write strategy and experiment docs with AI that sound like a human wrote them. 3-stage workflow with built-in quality rules. |
+| `pm-doc-coauthoring` | Write strategy and experiment docs with AI that sound like a human wrote them. 3-stage workflow with built-in quality rules. |
 
 ### System
 
@@ -47,7 +47,7 @@ cd v0-to-v1
 ./install.sh          # into the current project
 ./install.sh --user   # into ~/.claude/skills (available everywhere)
 ./install.sh --link   # symlink so `git pull` updates skills in place
-./install.sh --only jtbd-discovery doc-coauthoring   # just the ones you want
+./install.sh --only jtbd-discovery pm-doc-coauthoring   # just the ones you want
 ```
 
 **Option B: plugin marketplace**
@@ -66,6 +66,14 @@ The `ai-harness-design`, `system-health-check`, and `system-evolution` skills wo
 - Generic PM methodology only. No proprietary IP from any company.
 - Every framework is sourced from public research or the author's own genericized experience.
 - Opinionated. One expert answer, not a menu of options.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the skill anatomy, the frontmatter contract, and the quality bar. Run `./scripts/lint-skills.sh` and `./scripts/check-links.sh` before opening a PR; both gate CI.
+
+## Security & trust
+
+Skills run with your agent's permissions. None of the PM skills here make network calls or read credentials, and the usage logs the harness skills rely on stay on your machine. Per-skill scope and install hygiene: [SECURITY.md](SECURITY.md).
 
 ## License
 

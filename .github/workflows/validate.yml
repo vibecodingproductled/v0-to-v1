@@ -1,10 +1,15 @@
-name: check-links
+name: validate
 on:
   push:
     branches: [main]
   pull_request:
 jobs:
-  check:
+  lint-skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/lint-skills.sh
+  check-links:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

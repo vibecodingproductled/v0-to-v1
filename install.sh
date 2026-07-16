@@ -5,7 +5,7 @@
 #   ./install.sh                 # install into the current project (.claude/skills/)
 #   ./install.sh --user          # install into ~/.claude/skills/ (available everywhere)
 #   ./install.sh --link          # symlink instead of copy (updates with git pull)
-#   ./install.sh --only jtbd-discovery doc-coauthoring
+#   ./install.sh --only jtbd-discovery pm-doc-coauthoring
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
