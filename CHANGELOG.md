@@ -14,6 +14,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - `SECURITY.md`: per-skill scope table (what executes code, what reads/writes where) and install hygiene guidance.
 - `CHANGELOG.md` (this file).
 
+### Fixed
+- `sustainability-certification` (shipped earlier but undocumented at the repo level) is now listed in the README skills table under a new Domain section and covered in `SECURITY.md`'s scope table.
+
 ## [0.2.0] - 2026-07-16
 
 ### Added
