@@ -34,13 +34,7 @@ Actionable PM frameworks for taking an AI product from nothing to something. Eac
 | `system-health-check` | Diagnose an existing harness: structure, bloat, stale skills, broken references, and single-source-of-truth drift. Now with a deterministic validation step. Reports issues; fixes only with your approval. |
 | `system-evolution` | Evolve a harness from how it is actually used. Reads usage and session logs to propose what to add, merge, or archive. Grounded in data, not guesses. |
 
-### Domain
-
-| Skill | What it does |
-|-------|-------------|
-| `sustainability-certification` | Two AI agents (LEED specialist + BREEAM specialist) that act as early-stage certification consultants for architects. Given a building program and a target level, they return exact room-level requirements (lux values, air change rates, U-values) with source citations. |
-
-More skills ship weekly alongside the LinkedIn series.
+More skills ship weekly alongside the LinkedIn series. The sustainability certification agents (LEED + BREEAM consultants for architects) now live in their own repo: [aec-sustainability](https://github.com/vibecodingproductled/aec-sustainability).
 
 `system-evolution` (and part of `system-health-check`) read usage and session logs. Those logs come from the tracking hooks in `skills/ai-harness-design/references/hooks-guide.md`. Set those hooks up first and let data accumulate for a couple of weeks; without them, the evolution review has nothing to read.
 
@@ -75,7 +69,7 @@ The `ai-harness-design`, `system-health-check`, and `system-evolution` skills wo
 
 - **Claude Code** (any recent version with Agent Skills support), or another agent that reads the open [SKILL.md format](https://agentskills.io) — install with `--dest <that agent's skills directory>`.
 - `bash` for `install.sh`.
-- Python 3 only if you run the repo's CI scripts locally or the `sustainability-certification` scoring engines. The PM skills themselves are pure Markdown.
+- Python 3 only if you run the repo's CI scripts locally. The skills themselves are pure Markdown.
 
 ### Compatibility
 

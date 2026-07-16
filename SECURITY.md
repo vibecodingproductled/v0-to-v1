@@ -12,7 +12,6 @@ Skills are instructions your agent follows with **your agent's permissions**. In
 | `ai-harness-design` | Ships shell templates (hooks, validation script) that **you** choose to install into your harness | Yes, by design — it sets up `.claude/` structure with your approval |
 | `system-health-check` | Runs the deterministic validation script if present | Reads your `.claude/` setup; fixes only with explicit approval |
 | `system-evolution` | No | Reads `.claude/session-log.jsonl` and `.claude/skill-usage.jsonl` (local logs produced by the tracking hooks) |
-| `sustainability-certification` | Runs local Python scoring engines (`engine/`) and an eval harness (`eval/harness.py`) on bundled JSON knowledge files | No — all computation is on files inside the skill folder |
 
 None of the skills make network calls, install packages, or read credentials. The tracking hooks from `ai-harness-design` log tool usage **locally** to files in your own `.claude/` directory; nothing leaves your machine.
 

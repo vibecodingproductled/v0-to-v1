@@ -12,7 +12,6 @@ This repo is a collection of PM skills in the open [SKILL.md format](https://age
 | [ai-harness-design](skills/ai-harness-design/SKILL.md) | Setting up a Claude Code harness: rules, hooks, contexts, sub-agents |
 | [system-health-check](skills/system-health-check/SKILL.md) | Auditing an existing harness for bloat, drift, broken references |
 | [system-evolution](skills/system-evolution/SKILL.md) | Evolving a harness from usage/session logs |
-| [sustainability-certification](skills/sustainability-certification/SKILL.md) | LEED/BREEAM early-stage requirements for architects (domain skill; ships local Python scoring engines) |
 
 Boundary rule: `jtbd-discovery` designs research and synthesizes *across* interviews; `discovery-interview` processes *one* interview. Their descriptions disambiguate explicitly.
 

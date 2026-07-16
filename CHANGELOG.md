@@ -2,6 +2,11 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/) via git tags and `.claude-plugin/plugin.json`.
 
+## [Unreleased]
+
+### Removed
+- `sustainability-certification` moved to its own repository: [aec-sustainability](https://github.com/vibecodingproductled/aec-sustainability). This repo is now purely PM methodology skills; the domain-specific agents (and their Python scoring engines) live where they can grow independently.
+
 ## [0.3.0] - 2026-07-16
 
 ### Changed
