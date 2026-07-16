@@ -1,5 +1,8 @@
 # V0 to V1
 
+[![validate](https://github.com/vibecodingproductled/v0-to-v1/actions/workflows/validate.yml/badge.svg)](https://github.com/vibecodingproductled/v0-to-v1/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 PM skills for building AI products from scratch.
 
 Companion to the [V0 to V1 LinkedIn series](https://www.linkedin.com/in/danielsilvagameiro/) by Daniel Gameiro.
@@ -50,9 +53,10 @@ Cloning alone is not enough: Claude Code only discovers skills that live in a sk
 ```bash
 git clone https://github.com/vibecodingproductled/v0-to-v1.git
 cd v0-to-v1
-./install.sh          # into the current project
-./install.sh --user   # into ~/.claude/skills (available everywhere)
-./install.sh --link   # symlink so `git pull` updates skills in place
+./install.sh              # into the current project
+./install.sh --user       # into ~/.claude/skills (available everywhere)
+./install.sh --dest <dir> # into any other agent's skills directory
+./install.sh --link       # symlink so `git pull` updates skills in place
 ./install.sh --only jtbd-discovery pm-doc-coauthoring   # just the ones you want
 ```
 
@@ -66,6 +70,29 @@ cd v0-to-v1
 Once installed, skills auto-activate when your request matches their description (e.g., "help me synthesize these interviews" triggers `jtbd-discovery`). You can also invoke one explicitly by name.
 
 The `ai-harness-design`, `system-health-check`, and `system-evolution` skills work best installed together: health-check and evolution reference the hooks and single-source-of-truth material that harness-design ships.
+
+### Requirements
+
+- **Claude Code** (any recent version with Agent Skills support), or another agent that reads the open [SKILL.md format](https://agentskills.io) — install with `--dest <that agent's skills directory>`.
+- `bash` for `install.sh`.
+- Python 3 only if you run the repo's CI scripts locally or the `sustainability-certification` scoring engines. The PM skills themselves are pure Markdown.
+
+### Compatibility
+
+| Agent | Status |
+|-------|--------|
+| Claude Code | Native — tested; also installable as a plugin (Option B) |
+| Codex, Cursor, other SKILL.md-compatible agents | Format-compatible — copy with `./install.sh --dest <dir>`; check your agent's docs for its skills directory |
+
+## Example
+
+What using `jtbd-discovery` looks like:
+
+> **You:** I've done 8 customer interviews for our AI onboarding assistant. Help me synthesize them.
+>
+> **Claude** *(jtbd-discovery activates)*: Before synthesizing, I need the raw material sorted. For each interview, I'll pull out struggle statements — moments where the customer described friction in their own words — and separate them from feature requests, which we set aside. Then I'll cluster struggles into trunks (the recurring struggle) and branches (the causes behind it)...
+>
+> *…and it ends with testable hypothesis statements: "We believe [target users] struggle to [trunk] because [branch]. We'll know we're wrong if [falsification criteria]."*
 
 ## Principles
 

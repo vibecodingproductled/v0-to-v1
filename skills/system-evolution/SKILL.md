@@ -5,6 +5,9 @@ description: >
   to "improve the harness", "what should I add or remove", "review my skills",
   or "make the system better". Reads usage and session logs to propose changes,
   grounded in real data, not guesses.
+metadata:
+  version: 1.0.0
+  author: Daniel Gameiro
 ---
 
 # System Evolution

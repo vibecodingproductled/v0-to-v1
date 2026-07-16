@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Install v0-to-v1 skills into a Claude Code skills directory.
+# Install v0-to-v1 skills into an agent's skills directory.
 #
 # Usage:
 #   ./install.sh                 # install into the current project (.claude/skills/)
 #   ./install.sh --user          # install into ~/.claude/skills/ (available everywhere)
+#   ./install.sh --dest <dir>    # any other agent that reads the SKILL.md format
 #   ./install.sh --link          # symlink instead of copy (updates with git pull)
 #   ./install.sh --only jtbd-discovery pm-doc-coauthoring
 set -euo pipefail
@@ -16,6 +17,7 @@ ONLY=()
 while [ $# -gt 0 ]; do
   case "$1" in
     --user) TARGET="$HOME/.claude/skills"; shift ;;
+    --dest) shift; [ $# -gt 0 ] || { echo "--dest needs a directory"; exit 1; }; TARGET="$1"; shift ;;
     --link) MODE="link"; shift ;;
     --only) shift; while [ $# -gt 0 ] && [[ "$1" != --* ]]; do ONLY+=("$1"); shift; done ;;
     *) echo "Unknown option: $1"; exit 1 ;;
@@ -47,4 +49,4 @@ done
 
 echo
 echo "Done. Skills auto-activate when a request matches their description."
-echo "Restart Claude Code (or run /reload-skills) to pick them up."
+echo "Restart your agent (in Claude Code: restart or /reload-skills) to pick them up."

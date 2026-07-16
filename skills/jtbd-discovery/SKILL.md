@@ -1,6 +1,9 @@
 ---
 name: jtbd-discovery
 description: Design discovery research and synthesize it into Jobs to Be Done. Use when planning an interview round, writing an interview script, synthesizing findings across interviews, separating symptoms from root causes, or framing problems as testable hypotheses. Do NOT use for processing a single interview's notes into a writeup; that is discovery-interview.
+metadata:
+  version: 1.0.0
+  author: Daniel Gameiro
 ---
 
 # JTBD Discovery

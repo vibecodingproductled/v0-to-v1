@@ -7,6 +7,13 @@ cd "$(dirname "$0")/.." || exit 1
 python3 - << 'PY'
 import os, re, sys, glob
 
+try:
+    import yaml  # preinstalled on GitHub runners; optional locally
+except ImportError:
+    yaml = None
+    print('NOTE: PyYAML not available; skipping strict YAML parse '
+          '(pip install pyyaml for the full check)')
+
 fail = 0
 def err(skill, msg):
     global fail
@@ -40,6 +47,27 @@ for d in skill_dirs:
         continue
     fm = '\n'.join(lines[1:end])
     body = lines[end + 1:]
+
+    # Frontmatter must be VALID YAML, not just look like it. A plain
+    # (unquoted) scalar containing ": " -- e.g.
+    #   description: Covers the full architecture: CLAUDE.md, rules, ...
+    # is a YAML syntax error, and a strict parser will reject the whole
+    # frontmatter, so the skill silently never loads.
+    if yaml is not None:
+        try:
+            parsed = yaml.safe_load(fm)
+            if not isinstance(parsed, dict):
+                err(skill, 'frontmatter does not parse to a YAML mapping')
+        except yaml.YAMLError as e:
+            err(skill, f'frontmatter is not valid YAML: {str(e).splitlines()[0]}')
+    else:
+        # Fallback heuristic: a single-line unquoted description with a
+        # colon-space in its value is the common way this breaks.
+        m = re.search(r'^description:\s+([^>|"\'].*:\s.*)$', fm, re.M)
+        if m:
+            err(skill, 'single-line `description` contains ": " -- invalid as a '
+                       'plain YAML scalar; use a block scalar (`description: >-`) '
+                       'or quote the value')
 
     # name: required, must match the folder, lowercase-hyphen only.
     # A mismatch means the skill installs under one name but announces

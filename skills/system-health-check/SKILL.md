@@ -5,6 +5,9 @@ description: >
   after big changes, or when asked to "check the harness", "run a health check",
   "what's broken", or "audit my setup". Checks structure, bloat, stale skills,
   broken references, and single-source-of-truth drift.
+metadata:
+  version: 1.0.0
+  author: Daniel Gameiro
 ---
 
 # System Health Check

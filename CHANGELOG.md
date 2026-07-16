@@ -14,7 +14,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - `SECURITY.md`: per-skill scope table (what executes code, what reads/writes where) and install hygiene guidance.
 - `CHANGELOG.md` (this file).
 
+- Per-skill `metadata.version` (SemVer) in every skill's frontmatter; bump it when a skill's behavior changes.
+- Issue templates (bug report, skill proposal) and a PR template with the pre-merge checklist.
+- Root `AGENTS.md`: skill index and repo conventions for coding agents working on this repo.
+- `install.sh --dest <dir>` for agents other than Claude Code that read the SKILL.md format.
+- README: CI/license badges, requirements, compatibility table, and a worked example.
+
 ### Fixed
+- `ai-harness-design`'s description was invalid YAML (an unquoted `: ` inside the scalar), which a strict frontmatter parser rejects — the exact silent load failure this repo's lint exists to catch. Converted to a block scalar, and `lint-skills.sh` now runs a real YAML parse on every skill's frontmatter (with a heuristic fallback when PyYAML is absent).
 - `sustainability-certification` (shipped earlier but undocumented at the repo level) is now listed in the README skills table under a new Domain section and covered in `SECURITY.md`'s scope table.
 
 ## [0.2.0] - 2026-07-16

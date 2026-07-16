@@ -7,6 +7,9 @@ description: |
   transcript, or asks to "process an interview", "write up an interview", "score my
   interview", or wants "interview feedback". Do NOT use for designing interview scripts or
   synthesizing findings across many interviews; that is jtbd-discovery.
+metadata:
+  version: 1.0.0
+  author: Daniel Gameiro
 ---
 
 # Discovery Interview

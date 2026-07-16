@@ -1,6 +1,9 @@
 ---
 name: sustainability-certification
 description: Two AI agents (LEED specialist + BREEAM specialist) that act as early-stage certification consultants for architects. Given a building program and a target certification level, they return exact room-level requirements (lux values, air change rates, U-values, water flow rates) with source citations. Clone and run in Claude Code. No platform dependency.
+metadata:
+  version: 1.0.0
+  author: Daniel Gameiro
 ---
 
 # Sustainability Certification Agents

@@ -28,6 +28,9 @@ name: my-skill            # must match the folder name; lowercase-and-hyphens
 description: >
   What the skill does AND when to trigger it, in third person, with the
   phrases a user would actually say. Max 1024 characters. No angle brackets.
+metadata:
+  version: 1.0.0          # SemVer, per skill; bump when you change behavior
+  author: Your Name
 ---
 ```
 
@@ -58,6 +61,7 @@ Then:
 1. Add your skill to the table in `README.md` under the right theme.
 2. Add an entry to `CHANGELOG.md` under `[Unreleased]`.
 3. If your skill executes scripts or reads/writes outside its own folder, document that in the skill body and in `SECURITY.md`'s scope table.
+4. If you changed an existing skill's behavior, bump its `metadata.version`. Repo releases (git tag + `.claude-plugin/plugin.json`) are cut by the maintainer.
 
 ## Review standard
 

@@ -1,6 +1,14 @@
 ---
 name: ai-harness-design
-description: Set up a production-grade Claude Code harness from scratch. Use when starting a new project, auditing an existing setup, helping someone new to Claude Code, or when Claude's output feels inconsistent. Covers the full architecture: CLAUDE.md, rules, skills, hooks, knowledge contexts, memory, sub-agents, personas, tool (MCP) integration, and the single-source-of-truth principle that keeps it from rotting.
+description: >-
+  Set up a production-grade Claude Code harness from scratch. Use when starting a new
+  project, auditing an existing setup, helping someone new to Claude Code, or when
+  Claude's output feels inconsistent. Covers the full architecture (CLAUDE.md, rules,
+  skills, hooks, knowledge contexts, memory, sub-agents, personas, tool/MCP integration)
+  and the single-source-of-truth principle that keeps it from rotting.
+metadata:
+  version: 1.0.0
+  author: Daniel Gameiro
 ---
 
 # AI Harness Design
