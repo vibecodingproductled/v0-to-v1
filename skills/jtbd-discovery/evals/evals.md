@@ -15,6 +15,26 @@ Give the skill a realistic input (a set of interview notes; the invented raw mat
 5. **Confidence honesty.** Every confidence level cites independent sources, and no trunk claims a tier its source count does not support. FAIL on any unsupported tier.
 6. **Parking discipline.** Any trunk below MEDIUM is parked, not promoted to a hypothesis. FAIL if a LOW trunk carries a promoted hypothesis.
 
+## Triggering checks
+
+Run each prompt in a fresh session with this skill installed. PASS requires activation on every should-fire prompt and silence on every should-not-fire prompt.
+
+Should fire:
+
+1. "Plan my next discovery interview round"
+2. "Write an interview script for architects"
+3. "Synthesize these 10 interviews into root causes"
+4. "Help me separate symptoms from root causes in this research"
+5. "Turn these findings into testable hypotheses"
+
+Should not fire:
+
+1. "Here's a transcript, write it up" (discovery-interview)
+2. "Who is our ideal user based on this usage data?" (ideal-user-persona)
+3. "Shape this feature idea into a spec" (product-shaping)
+4. "Write a strategy doc from this research" (pm-doc-coauthoring)
+5. "What job should I apply for?" (unrelated; "jobs" as careers)
+
 ## Regression input
 
 Keep one fixed input set and rerun after any change to the skill body. A skill edit that flips a previously passing check is a regression, not a style choice.

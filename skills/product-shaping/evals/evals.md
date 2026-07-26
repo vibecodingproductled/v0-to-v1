@@ -11,6 +11,26 @@ Pass/fail checks for a shaped spec. Grade with a fresh context: paste the spec a
 5. **Risk-ordered research.** The research summary addresses the risk the frame identified as biggest. FAIL if the biggest risk got the least evidence.
 6. **Open questions owned.** Every open question has an owner and names what it blocks. FAIL on any orphan question.
 
+## Triggering checks
+
+Run each prompt in a fresh session with this skill installed. PASS requires activation on every should-fire prompt and silence on every should-not-fire prompt.
+
+Should fire:
+
+1. "Write a PRD for bulk export"
+2. "Spec this feature"
+3. "Shape this idea into something we can commit to"
+4. "Turn this brief into a spec"
+5. "Interrogate this feature request before we build it"
+
+Should not fire:
+
+1. "Write our annual strategy doc" (pm-doc-coauthoring)
+2. "Synthesize the discovery findings first" (jtbd-discovery)
+3. "Who is this feature even for?" (ideal-user-persona)
+4. "Shape up my resume" (unrelated)
+5. "What's the best shape for this database schema?" (unrelated; engineering)
+
 ## Regression input
 
 Keep one rough feature brief as fixed input. Rerun after any change to the skill body; a previously passing check that now fails is a regression.

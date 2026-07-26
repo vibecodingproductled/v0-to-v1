@@ -81,6 +81,17 @@ for d in skill_dirs:
             err(skill, f'`name: {name}` does not match folder name `{skill}`')
         if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', name):
             err(skill, f'`name: {name}` must be lowercase letters/digits/hyphens')
+        # Reserved words: Anthropic rejects names containing these, and a
+        # name like "claude-x" invites collision/confusion with official skills.
+        for word in ('claude', 'anthropic'):
+            if word in name:
+                err(skill, f'`name` contains reserved word "{word}"')
+
+    # metadata.version: required by this repo's changelog discipline. A skill
+    # without a version cannot be referenced by the CHANGELOG or bumped on a
+    # breaking change (renames included).
+    if not re.search(r'^\s*version:\s*\d+\.\d+\.\d+\s*$', fm, re.M):
+        err(skill, 'frontmatter missing `metadata.version` (SemVer, e.g. 1.0.0)')
 
     # description: required, non-empty, <=1024 chars, no XML/angle brackets.
     # This text is injected into the system prompt; it is the ONLY thing the

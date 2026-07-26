@@ -4,9 +4,10 @@ description: >
   Evolve the harness based on how it is actually used. Use monthly, or when asked
   to "improve the harness", "what should I add or remove", "review my skills",
   or "make the system better". Reads usage and session logs to propose changes,
-  grounded in real data, not guesses.
+  grounded in real data, not guesses. Do NOT use for diagnosing breakage
+  (system-health-check) or for initial harness setup (ai-harness-design).
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: Daniel Gameiro
 ---
 
@@ -68,3 +69,7 @@ Read N skill-usage records and M session-log entries over [dates].
 ## Record the run
 
 After completing the evolution review, write the current `skill-usage.jsonl` line count to `.claude/.last-evolution`. This tells the SessionStart audit hook not to re-prompt until meaningful new data accumulates. Without this, the audit hook fires every session once the log crosses its threshold, which defeats the purpose of the threshold.
+
+## References
+
+- [evals/evals.md](evals/evals.md): Pass/fail checks against fixture logs, plus triggering checks

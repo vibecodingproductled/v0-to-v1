@@ -2,12 +2,14 @@
 name: ai-harness-design
 description: >-
   Set up a production-grade Claude Code harness from scratch. Use when starting a new
-  project, auditing an existing setup, helping someone new to Claude Code, or when
-  Claude's output feels inconsistent. Covers the full architecture (CLAUDE.md, rules,
-  skills, hooks, knowledge contexts, memory, sub-agents, personas, tool/MCP integration)
-  and the single-source-of-truth principle that keeps it from rotting.
+  project, helping someone new to Claude Code, or when Claude's output feels
+  inconsistent. Covers the full architecture (CLAUDE.md, rules, skills, hooks,
+  knowledge contexts, memory, sub-agents, personas, tool/MCP integration) and the
+  single-source-of-truth principle that keeps it from rotting. Do NOT use for
+  diagnosing an existing harness (system-health-check) or for evolving one from
+  usage data (system-evolution).
 metadata:
-  version: 1.1.0
+  version: 1.2.0
   author: Daniel Gameiro
 ---
 
@@ -235,3 +237,7 @@ Your harness should evolve with your workflow. See `references/evolution-checkli
 Two shipped skills do the maintenance for you. **`system-health-check`** runs a deterministic validator (a bash script that mechanically checks that references resolve, names match folders, and structural invariants hold) before an LLM-based narrative that catches qualitative issues the script cannot. **`system-evolution`** reads your skill-activation and session logs and proposes what to add, merge, or archive, grounded in data. Run health-check when something feels off; run evolution monthly. Wire the validator as a git pre-commit hook for continuous enforcement.
 
 The principle: start small, add only what you need, encode corrections as durable rules, and periodically prune what you no longer use. The harness is done when it is invisible.
+
+## Evals
+
+- [evals/evals.md](evals/evals.md): Pass/fail checks for a produced harness, plus triggering checks

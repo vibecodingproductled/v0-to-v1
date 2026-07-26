@@ -4,9 +4,11 @@ description: >
   Diagnose the health of an AI harness. Use when something feels off, on first run,
   after big changes, or when asked to "check the harness", "run a health check",
   "what's broken", or "audit my setup". Checks structure, bloat, stale skills,
-  broken references, and single-source-of-truth drift.
+  broken references, and single-source-of-truth drift. Do NOT use for proposing
+  changes from usage data (system-evolution) or for building a new harness
+  (ai-harness-design).
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: Daniel Gameiro
 ---
 
@@ -79,3 +81,7 @@ This is the most valuable check. Enforce the one-home-per-fact rule: each fact l
 - Report, do not silently fix. Propose each fix and apply only with approval, one at a time.
 - Prefer pointers over copies when fixing drift. Never delete history to resolve a duplication; consolidate to the one home and point from the other.
 - Be specific. "Skills look messy" is useless. "These two skill descriptions both trigger on 'write a doc'" is actionable.
+
+## References
+
+- [evals/evals.md](evals/evals.md): Pass/fail checks against a seeded defect fixture, plus triggering checks

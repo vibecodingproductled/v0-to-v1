@@ -4,7 +4,7 @@ New skills ship alongside the [V0 to V1 LinkedIn series](https://www.linkedin.co
 
 ## What belongs here
 
-The repo holds the line at 8 curated skills. A proposal for a ninth should name the existing skill it merges with or replaces; curation is the feature, and a growing pile of overlapping skills degrades intent matching for everyone (see the Skill Graveyard anti-pattern in `ai-harness-design`).
+The repo holds the line at 9 curated skills. A proposal for a tenth should name the existing skill it merges with or replaces; curation is the feature, and a growing pile of overlapping skills degrades intent matching for everyone (see the Skill Graveyard anti-pattern in `ai-harness-design`).
 
 - Generic PM methodology only. No proprietary IP from any company.
 - Sourced from public research or your own genericized experience. Say which, in the skill itself.

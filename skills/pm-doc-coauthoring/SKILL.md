@@ -1,12 +1,19 @@
 ---
 name: pm-doc-coauthoring
-description: Write strategy docs, experiment specs, proposals, and decision docs with AI that sound like a human wrote them. Use when drafting any substantial document. 3-stage workflow (Context Gathering, Refinement, Reader Testing) with quality rules that prevent AI-sounding output.
+description: >-
+  Write PM strategy docs, experiment specs, proposals, and decision docs with AI
+  that read as human-written. Use when drafting a strategy doc, decision doc,
+  proposal, or experiment spec, or when asked to remove AI-sounding style from
+  a document. 3-stage workflow (Context Gathering, Refinement, Reader Testing)
+  with quality rules that prevent AI-sounding output. Do NOT use for shaping a
+  specific feature into a spec (product-shaping) or for code documentation,
+  READMEs, and marketing copy.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
   author: Daniel Gameiro
 ---
 
-# Doc Co-Authoring
+# PM Doc Co-Authoring
 
 A structured workflow for writing strategy documents, experiment specs, proposals, and decision docs with AI assistance. The goal is documents that read as if a thoughtful human wrote them, not an LLM.
 

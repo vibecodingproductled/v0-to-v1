@@ -4,6 +4,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-07-26
+
+### Added
+- `skill-authoring` skill (1.0.0): create a new skill or fix one that misfires. Covers naming and collision checks, the trigger-phrased description formula with exclusion clauses, progressive disclosure budgets, and the requirement that every skill ship binary evals for both output and triggering. Ships a template with a pre-ship review checklist. The curation line moves from 8 to 9 to admit it; it is the meta-skill that enforces the bar for the other eight.
+- **Triggering evals across all skills**: every `evals/evals.md` now carries should-fire and should-not-fire prompts, with near misses owned by sibling skills as the negatives. Output evals verified the artifacts; nothing verified activation until now. New `evals/` folders for the three system skills (`ai-harness-design`, `system-health-check`, `system-evolution`), each with seeded-fixture output checks as well.
+- Linter: rejects reserved words ("claude", "anthropic") in skill names and requires `metadata.version` (SemVer), since the changelog discipline depends on it.
+
+### Changed
+- `pm-doc-coauthoring` (2.1.0): description no longer claims "any substantial document". Scoped to PM document types, with exclusions for feature specs (product-shaping), code documentation, READMEs, and marketing copy. It was the only skill without an exclusion clause and the broadest trigger in the collection. Body title corrected to match the 0.3.0 rename.
+- `ai-harness-design` (1.2.0): description no longer claims "auditing an existing setup", which cross-triggered with `system-health-check`'s "audit my setup". Added exclusions pointing to both maintenance skills.
+- `system-health-check` (1.1.0) and `system-evolution` (1.1.0): mutual exclusion clauses added; the three system skills now each name which sibling owns adjacent intents.
+
 ## [0.4.0] - 2026-07-16
 
 ### Removed
