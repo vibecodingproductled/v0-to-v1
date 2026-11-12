@@ -25,11 +25,12 @@ Positioning: for generic PRD, competitive-analysis, and roadmap skills, Anthropi
 | `discovery-interview` | Conduct structured user research interviews with hypothesis tracking, destroy questions, and automated writeups. |
 | `ideal-user-persona` | Identify the one high-motivation user profile from behavioral data, say who you are not serving, and wire both to a product-led growth motion. |
 
-### Shaping & Writing
+### Experimenting, Shaping & Writing
 
 | Skill | What it does |
 |-------|-------------|
 | `product-shaping` | Turn a rough idea into a two-minute-read spec through an adversarial frame, parallel research, and convergence. States its own kill criteria. |
+| `experiment-design-0-to-1` | Scope an experiment that answers one question: success and kill condition set before starting, what it is and is not written down, smallest build that can answer it. |
 | `pm-doc-coauthoring` | Write strategy and experiment docs with AI that sound like a human wrote them. 3-stage workflow with built-in quality rules. |
 
 ### System
@@ -41,7 +42,7 @@ Positioning: for generic PRD, competitive-analysis, and roadmap skills, Anthropi
 | `system-evolution` | Evolve a harness from how it is actually used. Reads usage and session logs to propose what to add, merge, or archive. Grounded in data, not guesses. |
 | `skill-authoring` | Create a new skill or fix one that misfires: naming, trigger-phrased descriptions, progressive disclosure, and evals that test triggering as well as output. |
 
-New skills ship alongside the [V0 to V1 LinkedIn series](https://www.linkedin.com/in/danielsilvagameiro/); the changelog is the honest record of cadence. The repo holds the line at 9 curated skills: if one comes in, one merges or archives (see CONTRIBUTING). The ninth is the exception that guards the rule: `skill-authoring` is the meta-skill that enforces the quality bar for the rest. The sustainability certification agents (LEED + BREEAM consultants for architects) live in their own repo, [aec-sustainability](https://github.com/vibecodingproductled/aec-sustainability), and show what this methodology produces when pointed at a regulated AEC domain: a deterministic scoring engine the LLM never overrides, a provenance-mandatory knowledge base, and golden-file regression tests.
+New skills ship alongside the [V0 to V1 LinkedIn series](https://www.linkedin.com/in/danielsilvagameiro/); the changelog is the honest record of cadence. The repo holds the line at 10 curated skills: if one comes in, one merges or archives (see CONTRIBUTING). The line has moved twice, and the changelog records both: for `skill-authoring`, the meta-skill that enforces the quality bar for the rest, and for `experiment-design-0-to-1`, which fills the step between discovery and shaping that the declared experimentation bias had left empty. The sustainability certification agents (LEED + BREEAM consultants for architects) live in their own repo, [aec-sustainability](https://github.com/vibecodingproductled/aec-sustainability), and show what this methodology produces when pointed at a regulated AEC domain: a deterministic scoring engine the LLM never overrides, a provenance-mandatory knowledge base, and golden-file regression tests.
 
 `system-evolution` (and part of `system-health-check`) read usage and session logs. Those logs come from the tracking hooks in `skills/ai-harness-design/references/hooks-guide.md`. Set those hooks up first and let data accumulate for a couple of weeks; without them, the evolution review has nothing to read.
 

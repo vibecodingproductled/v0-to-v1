@@ -107,7 +107,7 @@ Each trunk-branch pair becomes a hypothesis:
 
 > "We believe [target users] struggle to [trunk] because [branch]. If we [proposed solution], we expect [measurable outcome] to improve by [threshold]. We'll know we're wrong if [falsification criteria]."
 
-This is where discovery ends and experimentation begins: each hypothesis gets a smallest-possible test with a pre-registered success threshold and a kill criterion.
+This is where discovery ends and experimentation begins: each hypothesis gets a smallest-possible test with a pre-registered success threshold and a kill criterion. Scope that test with the `experiment-design-0-to-1` skill.
 
 ## References
 
