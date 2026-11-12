@@ -4,6 +4,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Added
+- `experiment-design-0-to-1` skill (1.0.0): scope a 0-to-1 experiment into a one-page brief. Each experiment is built to prove or disprove one branch problem from the `jtbd-discovery` trunk-branch synthesis. One question per experiment, success and kill condition set before starting, an explicit "it is / it is not" list, and the smallest build that can answer the question. States that 0-to-1 experiments are not A/B tests. Ships a brief template with an invented worked example and binary evals for output and triggering. The curation line moves from 9 to 10 to admit it: the repo declares a hypothesis-driven experimentation bias and had no skill for the step between discovery and shaping.
+
+### Changed
+- `pm-doc-coauthoring` (2.1.1): exclusion clause added for experiment scoping, which now belongs to `experiment-design-0-to-1`. It still owns writing the long-form experiment spec.
+- `jtbd-discovery`: the hypotheses section now points to `experiment-design-0-to-1` for scoping the test (pointer only, no behavior change).
+- AGENTS.md: skill index now lists `skill-authoring` and the correct skill count.
+
 ## [0.5.0] - 2026-07-26
 
 ### Added

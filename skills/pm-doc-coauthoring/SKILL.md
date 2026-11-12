@@ -6,10 +6,12 @@ description: >-
   proposal, or experiment spec, or when asked to remove AI-sounding style from
   a document. 3-stage workflow (Context Gathering, Refinement, Reader Testing)
   with quality rules that prevent AI-sounding output. Do NOT use for shaping a
-  specific feature into a spec (product-shaping) or for code documentation,
-  READMEs, and marketing copy.
+  specific feature into a spec (product-shaping), for deciding what an
+  experiment should test and its success and kill criteria
+  (experiment-design-0-to-1), or for code documentation, READMEs, and
+  marketing copy.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
   author: Daniel Gameiro
 ---
 

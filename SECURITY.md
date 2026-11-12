@@ -10,6 +10,7 @@ Skills are instructions your agent follows with **your agent's permissions**. In
 | `discovery-interview` | No | Writes interview writeups and a feedback tracker where you tell it to | **Can publish** to a wiki (Confluence/Notion) you configure, via connectors you have already authenticated. Local-markdown mode makes it fully offline. |
 | `ideal-user-persona` | No | Reads the behavioral data export you point it at | No |
 | `product-shaping` | No | Writes the spec you are shaping; research passes read what you give them access to | Only through tools you have already connected, and only if you ask it to research externally |
+| `experiment-design-0-to-1` | No | Writes the experiment brief you are scoping | No |
 | `pm-doc-coauthoring` | No | Writes the document you are drafting | No |
 | `ai-harness-design` | Ships shell templates (hooks, validation script) that **you** choose to install into your harness | Yes, by design: it sets up `.claude/` structure with your approval | No |
 | `system-health-check` | Runs the deterministic validation script if present | Reads your `.claude/` setup; fixes only with explicit approval | No |
